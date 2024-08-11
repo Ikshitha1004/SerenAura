@@ -30,7 +30,7 @@ export const Styles = {
     padding: 16,
   },
   heading: {
-    fontFamily: FontFamily.poppinsBold,
+    // fontFamily: FontFamily.poppinsBold,
     fontSize: FontSize.size_5xl,
     color: Color.colorGray_100,
   },
