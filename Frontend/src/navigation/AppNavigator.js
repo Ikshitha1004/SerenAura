@@ -6,12 +6,12 @@ import GratitudeJarScreen from "../screens/GratitudeJarScreens/GratitudeJarScree
 import CommunityScreen from "../screens/Community/index";
 import SignUp from "../screens/LogScreens/SignUp";
 const Stack = createStackNavigator();
-
+import Login from "../screens/LogScreens/LoginScreen";
 const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ title: "Home" }}
@@ -20,7 +20,7 @@ const AppNavigator = () => {
           name="GratitudeJar"
           component={CommunityScreen}
           options={{ title: "Comunity" }}
-        />
+        /> */}
         <Stack.Screen
           name="SignUp"
           component={SignUp}

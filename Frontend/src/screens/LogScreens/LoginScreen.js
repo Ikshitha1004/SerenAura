@@ -2,14 +2,35 @@ import * as React from "react";
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
-import { Border, FontSize, Color } from "../../styles/GlobalStyles";
 import {
+  useFonts,
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
+import * as SplashScreen from "expo-splash-screen";
+
+// Prevent the splash screen from auto-hiding
+SplashScreen.preventAutoHideAsync();
+
 const IPhone1313Pro = () => {
   const navigation = useNavigation();
+
+  // Load fonts
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_700Bold,
+  });
+
+  React.useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync(); // Hide the splash screen once fonts are loaded
+    }
+  }, [fontsLoaded]);
+  if (!fontsLoaded) {
+    return null; // You can return a custom loading component here if you want
+  }
 
   return (
     <View style={styles.iphone1313Pro1}>
@@ -63,14 +84,14 @@ const styles = StyleSheet.create({
   iphone1313Layout: {
     height: 60,
     width: 300,
-    borderRadius: Border.br_9xl,
+    borderRadius: 32,
     left: 45,
     position: "absolute",
   },
   orTypo: {
     textAlign: "center",
-    fontFamily: "Poppins-Regular",
-    fontSize: FontSize.size_base,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 16,
     position: "absolute",
   },
   iconLayout1: {
@@ -83,9 +104,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   textTypo: {
-    color: Color.colorGray_100,
-    fontSize: FontSize.size_sm,
+    color: "#696969",
+    fontSize: 14,
     textAlign: "center",
+    fontFamily: "Poppins_400Regular",
   },
   phoneIconPosition: {
     top: 3,
@@ -117,35 +139,35 @@ const styles = StyleSheet.create({
   },
   iphone1313Pro1Child: {
     top: 370,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: "#FFFFFF",
     width: 300,
-    borderRadius: Border.br_9xl,
+    borderRadius: 32,
     left: 45,
   },
   iphone1313Pro1Item: {
     top: 444,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: "#FFFFFF",
     width: 300,
-    borderRadius: Border.br_9xl,
+    borderRadius: 32,
     left: 45,
   },
   iphone1313Pro1Inner: {
     top: 536,
-    backgroundColor: Color.colorMistyrose,
+    backgroundColor: "#FFE4E1",
     width: 300,
-    borderRadius: Border.br_9xl,
+    borderRadius: 32,
     left: 45,
   },
   username: {
     top: 387,
     left: 99,
-    color: Color.colorDimgray_100,
+    color: "#696969",
     textAlign: "center",
   },
   password: {
     top: 461,
     left: 100,
-    color: Color.colorDimgray_100,
+    color: "#A9A9A9",
     textAlign: "center",
   },
   key1Icon: {
@@ -163,14 +185,14 @@ const styles = StyleSheet.create({
     top: 665,
     left: 220,
     borderStyle: "solid",
-    borderColor: Color.colorWhite,
+    borderColor: "#FFFFFF",
     borderTopWidth: 1,
     width: 111,
   },
   or: {
     top: 652,
     left: 187,
-    color: Color.colorWhite,
+    color: "#FFFFFF",
   },
   user1Icon: {
     top: 393,
@@ -184,7 +206,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   text: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins_500Medium",
     fontWeight: "500",
     top: 0,
     position: "absolute",
@@ -223,23 +245,22 @@ const styles = StyleSheet.create({
   logInNow: {
     marginLeft: -75,
     top: 323,
-    fontSize: FontSize.size_5xl,
+    fontSize: 24,
     fontWeight: "700",
-    fontFamily: "Poppins-Bold",
+    fontFamily: "Poppins_700Bold",
     width: 149,
     height: 33,
-    color: Color.colorWhite,
+    color: "#FFFFFF",
   },
   logIn: {
     marginLeft: -43,
-
     top: 552,
     color: "#1e1e1e",
     width: 86,
     height: 27,
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins_500Medium",
     fontWeight: "500",
-    fontSize: FontSize.size_base,
+    fontSize: 16,
     alignItems: "center",
     display: "flex",
     left: "50%",
@@ -247,7 +268,7 @@ const styles = StyleSheet.create({
   forgotPassword: {
     top: 510,
     left: 190,
-    fontFamily: "Poppins_Medium",
+    fontFamily: "Poppins_500Medium",
     fontWeight: "500",
     position: "absolute",
   },
@@ -257,23 +278,23 @@ const styles = StyleSheet.create({
     width: 14,
   },
   dontHaveAn: {
-    fontSize: FontSize.size_sm,
+    fontSize: 14,
     top: 610,
-    color: Color.colorWhite,
+    color: "#FFFFFF",
     left: 60,
     textAlign: "center",
-    fontFamily: "Poppins_Medium",
+    fontFamily: "Poppins_500Medium",
   },
   signUp1: {
-    fontFamily: "Poppins_Regular",
-    color: Color.colorGray_100,
+    fontFamily: "Poppins_400Regular",
+    color: "#696969",
   },
   signUp: {
     left: 231,
   },
   iphone1313Pro1: {
-    borderRadius: Border.br_11xl,
-    backgroundColor: Color.colorDimgray_200,
+    borderRadius: 48,
+    backgroundColor: "#A9A9A9",
     flex: 1,
     width: "100%",
     height: 844,
