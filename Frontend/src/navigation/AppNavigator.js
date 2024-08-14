@@ -23,7 +23,7 @@ const AppNavigator = () => {
         /> */}
         <Stack.Screen
           name="SignUp"
-          component={SignUp}
+          component={Login}
           options={{ title: "SignUp" }}
         />
       </Stack.Navigator>
