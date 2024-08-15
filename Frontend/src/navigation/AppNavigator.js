@@ -1,47 +1,64 @@
+// import React from 'react';
+// import { createStackNavigator } from '@react-navigation/stack';
+// import { NavigationContainer } from '@react-navigation/native';
+// import HomeScreen from '../screens/HomeScreen';
+// import GratitudeJarScreen from '../screens/GratitudeJarScreens/GratitudeJarScreen';
+// import GratitudeListScreen from '../screens/GratitudeJarScreens/GratitudeList';
+// import AddGratitudeScreen from '../screens/GratitudeJarScreens/AddGratitude';
+// import React from "react";
+// import { createStackNavigator } from "@react-navigation/stack";
+// import { NavigationContainer } from "@react-navigation/native";
+// import HomeScreen from "../screens/HomeScreen";
+// import GratitudeJarScreen from "../screens/GratitudeJarScreens/GratitudeJarScreen";
+// import CommunityScreen from "../screens/Community/index";
+// import ProfileScreen from "../screens/Profile/ProfilePage";
+// import SignUp from "../screens/LogScreens/SignUp";
+// import Login from "../screens/LogScreens/LoginScreen";
 
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
-import GratitudeJarScreen from '../screens/GratitudeJarScreens/GratitudeJarScreen';
-import CommunityScreen from '../screens/Community/index';
-import ProfileScreen from '../screens/Profile/ProfilePage';
+// const Stack = createStackNavigator();
 
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "../screens/HomeScreen";
-import GratitudeJarScreen from "../screens/GratitudeJarScreens/GratitudeJarScreen";
-import CommunityScreen from "../screens/Community/index";
-import SignUp from "../screens/LogScreens/SignUp";
-const Stack = createStackNavigator();
-import Login from "../screens/LogScreens/LoginScreen";
-const AppNavigator = () => {
-  return (
-    <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
-          <Stack.Screen name="GratitudeJar" component={ProfileScreen} options={{ title: 'Comunity' }} />
-        </Stack.Navigator>
-      <Stack.Navigator initialRouteName="Home">
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Home" }}
-        />
-        <Stack.Screen
-          name="GratitudeJar"
-          component={CommunityScreen}
-          options={{ title: "Comunity" }}
-        /> */}
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ title: "SignUp" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+// const AppNavigator = () => {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Home">
+//         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+//         <Stack.Screen name="GratitudeJar" component={GratitudeJarScreen} options={{ title: 'Gratitude Jar' }} />
+//         <Stack.Screen name="GratitudeList" component={GratitudeListScreen} options={{ title: 'Your Gratitude' }} />
+//         <Stack.Screen name="AddGratitude" component={AddGratitudeScreen} options={{ title: 'Add Gratitude' }} />
+//       <Stack.Navigator initialRouteName="Profile">
+//         {/* <Stack.Screen
+//           name="Home"
+//           component={HomeScreen}
+//           options={{ title: "Home" }}
+//         /> */}
+//         {/* <Stack.Screen
+//           name="GratitudeJar"
+//           component={GratitudeJarScreen}
+//           options={{ title: "Gratitude Jar" }}
+//         /> */}
+//         {/* <Stack.Screen
+//           name="Community"
+//           component={CommunityScreen}
+//           options={{ title: "Community" }}
+//         /> */}
+//         <Stack.Screen
+//           name="Profile"
+//           component={ProfileScreen}
+//           options={{ title: "Profile" }}
+//         />
+//         {/* <Stack.Screen
+//           name="SignUp"
+//           component={SignUp}
+//           options={{ title: "Sign Up" }}
+//         />
+//         <Stack.Screen
+//           name="Login"
+//           component={Login}
+//           options={{ title: "Login" }}
+//         /> */}
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
 
-export default AppNavigator;
+// export default AppNavigator;
