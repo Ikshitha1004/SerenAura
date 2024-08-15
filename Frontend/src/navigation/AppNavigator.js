@@ -29,21 +29,21 @@ const AppNavigator = () => {
           component={CommunityScreen}
           options={{ title: "Community" }}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Profile"
           component={ProfileScreen}
           options={{ title: "Profile" }}
-        />
+        /> */}
         {/* <Stack.Screen
           name="SignUp"
           component={SignUp}
           options={{ title: "Sign Up" }}
-        />
+        /> */}
         <Stack.Screen
           name="Login"
           component={Login}
           options={{ title: "Login" }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
