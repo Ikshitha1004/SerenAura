@@ -1,32 +1,41 @@
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+// ProfileScreen.js
+import { StyleSheet, View, ImageBackground, Text } from "react-native";
 import React from "react";
 import Top from "./Top";
 import Middle from "./Middle";
 import Bottom from "./Bottom";
 
-
-const ProfileScreen= () =>{
+const ProfileScreen = () => {
   return (
-    <>
-      <ImageBackground source={require('../../assets/background.jpg')} style={styles.background}>
-        <View style={styles.container}>
-          <Top />
-          <Middle />
-          <Bottom />
-        </View>
-      </ImageBackground>
-    </>
+    <ImageBackground
+      source={require("../../assets/background.jpg")}
+      style={styles.background}
+    >
+      <View style={styles.container}>
+        <Text style={styles.debugText}>Profile Screen</Text>
+        <Top />
+        <Middle />
+        <Bottom />
+      </View>
+    </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  background:{
-    flex:1,
-    resizeMode : "cover",
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
-  container:{
-     //marginHorizontal : medium,
-    //  marginTop: Sizes.safe,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  debugText: {
+    color: "black",
+    fontSize: 24,
   },
 });
 
