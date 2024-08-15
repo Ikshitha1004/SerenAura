@@ -6,6 +6,7 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
@@ -17,13 +18,18 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useState } from "react";
-
+import { useRouter } from "expo-router";
+import { auth } from "../../configs/firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 SplashScreen.preventAutoHideAsync();
 
 const SignUp = () => {
   const navigation = useNavigation();
+  const router = useRouter();
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [fullName, setFullName] = useState();
   // Load fonts
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -36,11 +42,32 @@ const SignUp = () => {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
   if (!fontsLoaded) {
     return null;
   }
-
+  const OncreateAccount = () => {
+    if (!email || !password || !fullName) {
+      ToastAndroid.show("Please fill all the fields", ToastAndroid.BOTTOM);
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.signUpNow}>Sign Up Now</Text>
@@ -55,6 +82,7 @@ const SignUp = () => {
           style={styles.inputLabel}
           placeholder="Username"
           placeholderTextColor="#999999"
+          onChangeText={(value) => setFullName(value)}
         />
       </View>
 
@@ -68,6 +96,7 @@ const SignUp = () => {
           style={styles.inputLabel}
           placeholder="Email"
           placeholderTextColor="#999999"
+          onChangeText={(value) => setEmail(value)}
         />
       </View>
 
@@ -82,6 +111,7 @@ const SignUp = () => {
           placeholder="Password"
           placeholderTextColor="#999999"
           secureTextEntry={secureTextEntry}
+          onChangeText={(value) => setPassword(value)}
         />
         <TouchableOpacity
           onPress={() => setSecureTextEntry(!secureTextEntry)}
@@ -95,12 +125,9 @@ const SignUp = () => {
         </TouchableOpacity>
       </View>
 
-      <Pressable
-        style={styles.signUpButton}
-        onPress={() => navigation.navigate("IPhone1313Pro22")}
-      >
+      <TouchableOpacity style={styles.signUpButton} onPress={OncreateAccount}>
         <Text style={styles.signUpButtonText}>Sign Up</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
