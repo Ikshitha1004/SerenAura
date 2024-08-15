@@ -1,5 +1,12 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -9,11 +16,13 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
+import { useState } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
 const SignUp = () => {
   const navigation = useNavigation();
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   // Load fonts
   let [fontsLoaded] = useFonts({
@@ -42,7 +51,11 @@ const SignUp = () => {
           contentFit="cover"
           source={require("../../assets/user-2.png")}
         />
-        <Text style={styles.inputLabel}>Full Name</Text>
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Username"
+          placeholderTextColor="#999999"
+        />
       </View>
 
       <View style={styles.inputContainer}>
@@ -51,7 +64,11 @@ const SignUp = () => {
           contentFit="cover"
           source={require("../../assets/email.png")}
         />
-        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Email"
+          placeholderTextColor="#999999"
+        />
       </View>
 
       <View style={styles.inputContainer}>
@@ -60,12 +77,22 @@ const SignUp = () => {
           contentFit="cover"
           source={require("../../assets/key-3.png")}
         />
-        <Text style={styles.inputLabel}>Password</Text>
-        <Image
-          style={styles.hideIcon}
-          contentFit="cover"
-          source={require("../../assets/hide.png")}
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Password"
+          placeholderTextColor="#999999"
+          secureTextEntry={secureTextEntry}
         />
+        <TouchableOpacity
+          onPress={() => setSecureTextEntry(!secureTextEntry)}
+          style={{ justifyContent: "center" }}
+        >
+          <Image
+            style={styles.hideIcon}
+            contentFit="cover"
+            source={require("../../assets/hide.png")}
+          />
+        </TouchableOpacity>
       </View>
 
       <Pressable
@@ -112,7 +139,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins_400Regular",
     fontSize: 16,
     color: "#696969",
-    flex: 3,
+    flex: 1,
   },
   hideIcon: {
     height: 20,
