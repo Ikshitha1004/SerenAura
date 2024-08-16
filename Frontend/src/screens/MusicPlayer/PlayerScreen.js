@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Audio } from "expo-av";
-import Icon from "react-native-vector-icons/MaterialIcons"; // Importing the icon library
-import { useFocusEffect } from "@react-navigation/native"; // Import the hook
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { useFocusEffect } from "@react-navigation/native"; 
 
 // Static imports for all audio files and category images
 import PeacefulGarden from "../../assets/peaceful-garden.mp3";
@@ -47,7 +47,6 @@ const audioFiles = {
   "mountain-breeze.mp3": MountainBreeze,
 };
 
-// Mapping categories to their images
 const categoryImages = {
   peace: PeaceImage,
   deep_sleep: DeepSleepImage,
@@ -120,17 +119,17 @@ const PlayerScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black", // Set background color to black
+    backgroundColor: "black",
   },
   imageContainer: {
-    height: "50%", // Half of the screen height
+    height: "50%",
     justifyContent: "center",
     alignItems: "center",
   },
   categoryImage: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover", // Cover the container area
+    resizeMode: "cover", 
   },
   songTitle: {
     fontSize: 24,
