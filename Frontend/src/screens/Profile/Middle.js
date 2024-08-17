@@ -1,35 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image } from "react-native";
-import { Entypo } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+// Uncomment and use if fetching user data from Firebase
+// import { auth, db } from "../../configs/firebaseConfig";
+// import { getDoc, doc } from "firebase/firestore";
 
 const Middle = () => {
+  const [userName, setUserName] = useState("");
+  const [appliedCount, setAppliedCount] = useState(28); // Example static value
+  const [reviewedCount, setReviewedCount] = useState(73); // Example static value
+  const [contactedCount, setContactedCount] = useState(18); // Example static value
+
+  //Uncomment and use if fetching user data from Firebase
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const user = auth.currentUser;
+  //     if (user) {
+  //       const userDoc = await getDoc(doc(db, "users", user.uid));
+  //       if (userDoc.exists()) {
+  //         const userData = userDoc.data();
+  //         setUserName(userData.fullName);
+  //       }
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, []);
+
   return (
     <View style={styles.main}>
       <View style={styles.imageContainer}>
-        <Image source={require("../../assets/user.png")} style={styles.image} />
-        <Text style={styles.userName}>Abena
-        </Text>
+        <Image source={require("../../assets/icon.png")} style={styles.image} />
+        <Text style={styles.userName}>ikki</Text> 
       </View>
-
-      {/* Bottom Section */}
-      <View style={styles.middleSectionTextContainer}>
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Applied</Text>
-          <Text style={styles.bottomText}>28</Text>
-        </View>
-
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Reviewed</Text>
-          <Text style={styles.bottomText}>73</Text>
-        </View>
-
-        {/* Third Section */}
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Contacted</Text>
-          <Text style={styles.bottomText}>18</Text>
-        </View>
-      </View>
+   
     </View>
   );
 };
