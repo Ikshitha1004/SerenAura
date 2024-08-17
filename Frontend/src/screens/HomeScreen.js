@@ -15,9 +15,9 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/user.png")} style={styles.logo} />
+      <Image source={require("../assets/splash.png")} style={styles.logo} />
       <Image
-        source={require("../assets/user.png")}
+        source={require("../assets/splash.png")}
         style={styles.bannerImage}
       />
       <Text style={styles.title}>Lorem ipsum dolor.</Text>

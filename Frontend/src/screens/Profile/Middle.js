@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image } from "react-native";
+// Uncomment and use if fetching user data from Firebase
 // import { auth, db } from "../../configs/firebaseConfig";
 // import { getDoc, doc } from "firebase/firestore";
 
 const Middle = () => {
   const [userName, setUserName] = useState("");
-  const [appliedCount, setAppliedCount] = useState(28);
-  const [reviewedCount, setReviewedCount] = useState(73);
-  const [contactedCount, setContactedCount] = useState(18);
+  const [appliedCount, setAppliedCount] = useState(28); // Example static value
+  const [reviewedCount, setReviewedCount] = useState(73); // Example static value
+  const [contactedCount, setContactedCount] = useState(18); // Example static value
 
+  //Uncomment and use if fetching user data from Firebase
   // useEffect(() => {
   //   const fetchUserData = async () => {
   //     const user = auth.currentUser;
@@ -27,26 +29,10 @@ const Middle = () => {
   return (
     <View style={styles.main}>
       <View style={styles.imageContainer}>
-        <Image source={require("../../assets/user.png")} style={styles.image} />
-        <Text style={styles.userName}>{userName || "User Name"}</Text>
+        <Image source={require("../../assets/icon.png")} style={styles.image} />
+        <Text style={styles.userName}>ikki</Text> 
       </View>
-
-      <View style={styles.middleSectionTextContainer}>
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Applied</Text>
-          <Text style={styles.bottomText}>{appliedCount}</Text>
-        </View>
-
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Reviewed</Text>
-          <Text style={styles.bottomText}>{reviewedCount}</Text>
-        </View>
-
-        <View style={styles.middleSectionText}>
-          <Text style={styles.topText}>Contacted</Text>
-          <Text style={styles.bottomText}>{contactedCount}</Text>
-        </View>
-      </View>
+   
     </View>
   );
 };

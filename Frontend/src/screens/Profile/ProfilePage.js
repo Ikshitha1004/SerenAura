@@ -7,17 +7,12 @@ import Bottom from "./Bottom";
 
 const ProfileScreen = () => {
   return (
-    <ImageBackground
-      source={require("../../assets/background.jpg")}
-      style={styles.background}
-    >
       <View style={styles.container}>
         <Text style={styles.debugText}>Profile Screen</Text>
         <Top />
         <Middle />
         <Bottom />
       </View>
-    </ImageBackground>
   );
 };
 
