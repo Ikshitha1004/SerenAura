@@ -1,90 +1,136 @@
-// import * as React from "react";
-// import {
-//   StyleSheet,
-//   View,
-//   Text,
-//   TextInput,
-//   TouchableOpacity,
-//   ToastAndroid,
-// } from "react-native";
-// import { Image } from "expo-image";
-// import { useNavigation } from "@react-navigation/native";
-// import { useState } from "react";
-// import { useRouter } from "expo-router";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { setDoc, doc } from "firebase/firestore";
-// import { auth, db } from "../../configs/firebaseConfig";
-// import {
-//   useFonts,
-//   Poppins_400Regular,
-//   Poppins_500Medium,
-//   Poppins_700Bold,
-// } from "@expo-google-fonts/poppins";
-// import * as SplashScreen from "expo-splash-screen";
+import * as React from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
+import { Image } from "expo-image";
+import { useNavigation } from "@react-navigation/native";
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_700Bold,
+} from "@expo-google-fonts/poppins";
+import * as SplashScreen from "expo-splash-screen";
+import { useState } from "react";
+import { useRouter } from "expo-router";
+import { auth } from "../../configs/firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+SplashScreen.preventAutoHideAsync();
 
-// SplashScreen.preventAutoHideAsync();
+const SignUp = () => {
+  const navigation = useNavigation();
+  const router = useRouter();
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [fullName, setFullName] = useState();
+  // Load fonts
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_700Bold,
+  });
 
-// const SignUp = () => {
-//   const navigation = useNavigation();
-//   const router = useRouter();
-//   const [secureTextEntry, setSecureTextEntry] = useState(true);
-//   const [email, setEmail] = useState();
-//   const [password, setPassword] = useState();
-//   const [fullName, setFullName] = useState();
+  React.useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+  if (!fontsLoaded) {
+    return null;
+  }
+  const OncreateAccount = () => {
+    if (!email || !password || !fullName) {
+      ToastAndroid.show("Please fill all the fields", ToastAndroid.BOTTOM);
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
+  return (
+    <View style={styles.container}>
+      <Text style={styles.signUpNow}>Sign Up Now</Text>
 
-//   // Load fonts
-//   let [fontsLoaded] = useFonts({
-//     Poppins_400Regular,
-//     Poppins_500Medium,
-//     Poppins_700Bold,
-//   });
+      <View style={styles.inputContainer}>
+        <Image
+          style={{ height: 15, width: 15, marginRight: 10 }}
+          contentFit="cover"
+          source={require("../../assets/user-2.png")}
+        />
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Username"
+          placeholderTextColor="#999999"
+          onChangeText={(value) => setFullName(value)}
+        />
+      </View>
 
-//   React.useEffect(() => {
-//     if (fontsLoaded) {
-//       SplashScreen.hideAsync();
-//     }
-//   }, [fontsLoaded]);
+      <View style={styles.inputContainer}>
+        <Image
+          style={styles.icon}
+          contentFit="cover"
+          source={require("../../assets/email.png")}
+        />
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Email"
+          placeholderTextColor="#999999"
+          onChangeText={(value) => setEmail(value)}
+        />
+      </View>
 
-//   React.useEffect(() => {
-//     navigation.setOptions({
-//       headerShown: false,
-//     });
-//   }, []);
+      <View style={styles.inputContainer}>
+        <Image
+          style={styles.icon}
+          contentFit="cover"
+          source={require("../../assets/key-3.png")}
+        />
+        <TextInput
+          style={styles.inputLabel}
+          placeholder="Password"
+          placeholderTextColor="#999999"
+          secureTextEntry={secureTextEntry}
+          onChangeText={(value) => setPassword(value)}
+        />
+        <TouchableOpacity
+          onPress={() => setSecureTextEntry(!secureTextEntry)}
+          style={{ justifyContent: "center" }}
+        >
+          <Image
+            style={styles.hideIcon}
+            contentFit="cover"
+            source={require("../../assets/hide.png")}
+          />
+        </TouchableOpacity>
+      </View>
 
-//   if (!fontsLoaded) {
-//     return null;
-//   }
-
-//   const OncreateAccount = () => {
-//     if (!email || !password || !fullName) {
-//       ToastAndroid.show("Please fill all the fields", ToastAndroid.BOTTOM);
-//       return;
-//     }
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then(async (userCredential) => {
-//         // Signed up
-//         const user = userCredential.user;
-
-//         // Store user data in Firestore
-//         await setDoc(doc(db, "users", user.uid), {
-//           fullName: fullName,
-//           email: email,
-//         });
-
-//         console.log("User signed up and data stored in Firestore:", user);
-//         // Navigate to the profile page after signup
-//         router.push("/profile");
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         console.log(errorCode, errorMessage);
-//       });
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.signUpNow}>Sign Up Now</Text>
+      <TouchableOpacity style={styles.signUpButton} onPress={OncreateAccount}>
+        <Text style={styles.signUpButtonText}>Sign Up</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 //       <View style={styles.inputContainer}>
 //         <Image

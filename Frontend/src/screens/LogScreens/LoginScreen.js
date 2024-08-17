@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
-  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
-  Alert,
+  ToastAndroid, // Ensure ToastAndroid is imported
 } from "react-native";
 import { Image } from "expo-image";
-import { useNavigation } from "@react-navigation/native";
 import {
   useFonts,
   Poppins_400Regular,
@@ -17,12 +15,19 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "expo-router";
+import { auth } from "../../configs/firebaseConfig";
 
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
-
+import { useNavigation } from "@react-navigation/native";
 const Login = () => {
+  const router = useRouter();
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   // Load fonts
   let [fontsLoaded] = useFonts({
@@ -31,23 +36,49 @@ const Login = () => {
     Poppins_700Bold,
   });
 
-  // Manage secureTextEntry state
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
-
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync(); // Hide the splash screen once fonts are loaded
     }
   }, [fontsLoaded]);
 
+  const onSignIn = async () => {
+    if (!email || !password) {
+      ToastAndroid.show("Please fill all the fields", ToastAndroid.LONG);
+      return;
+    }
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User signed in:", user);
+      // Navigate to the home screen
+      // router.push("/calendar");
+      navigation.navigate("Calendar");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("im");
+      console.error("Error signing in:", errorMessage);
+
+      if (
+        errorCode === "auth/user-not-found" ||
+        errorCode === "auth/wrong-password"
+      ) {
+        ToastAndroid.show("Invalid credentials", ToastAndroid.LONG);
+      } else {
+        ToastAndroid.show("An error occurred", ToastAndroid.LONG);
+      }
+    }
+  };
+
   if (!fontsLoaded) {
     return null; // Return null until fonts are loaded
   }
-
-  const handleSubmit = () => {
-    // Add your login logic here
-    Alert.alert("Login Button Pressed");
-  };
 
   return (
     <View style={styles.container}>
@@ -57,9 +88,13 @@ const Login = () => {
           <Image
             style={styles.icon}
             contentFit="cover"
-            source={require("../../assets/user-2.png")}
+            source={require("../../assets/email.png")}
           />
-          <TextInput style={styles.inputText} placeholder="username" />
+          <TextInput
+            style={styles.inputText}
+            placeholder="email"
+            onChangeText={(value) => setEmail(value)}
+          />
         </View>
         <View style={styles.inputField}>
           <Image
@@ -71,6 +106,7 @@ const Login = () => {
             style={styles.inputText}
             placeholder="password"
             secureTextEntry={secureTextEntry}
+            onChangeText={(value) => setPassword(value)}
           />
           <TouchableOpacity
             onPress={() => setSecureTextEntry(!secureTextEntry)}
@@ -83,15 +119,15 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <Pressable style={styles.logInButton} onPress={handleSubmit}>
+      <TouchableOpacity style={styles.logInButton} onPress={onSignIn}>
         <Text style={styles.logInText}>Log In</Text>
-      </Pressable>
-      <View style={styles.footer}>
+      </TouchableOpacity>
+      {/* <View style={styles.footer}>
         <Text style={styles.dontHaveAn}>Don’t have an account?</Text>
         <Pressable onPress={() => navigation.navigate("IPhone1313Pro1")}>
           <Text style={styles.signUp}>Sign Up</Text>
         </Pressable>
-      </View>
+      </View> */}
     </View>
   );
 };
