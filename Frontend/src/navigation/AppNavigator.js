@@ -14,11 +14,11 @@ const AppNavigator = () => {
           component={LoginScreen}
           options={{ title: "Login" }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Calendar"
           component={CalendarScreen}
           options={{ title: "Calendar" }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
