@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"; // For music icon
+import { FontAwesome } from "@expo/vector-icons"; 
 
 const HomeScreen = ({ navigation }) => {
   const categories = [
@@ -35,13 +35,13 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black", // Set background color to black
+    backgroundColor: "black", 
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 50,
   },
   quoteContainer: {
-    backgroundColor: "#f0e68c", // Light khaki background color
+    backgroundColor: "#f0e68c", 
     padding: 15,
     borderRadius: 10,
     marginBottom: 20,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   categoryButton: {
     width: 100,
     height: 100,
-    borderRadius: 50, // Makes the button round
+    borderRadius: 50, 
     backgroundColor: "#4CAF50",
     justifyContent: "center",
     alignItems: "center",
