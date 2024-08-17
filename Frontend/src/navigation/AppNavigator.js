@@ -1,59 +1,27 @@
-// import React from 'react';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import { NavigationContainer } from '@react-navigation/native';
-// import HomeScreen from '../screens/HomeScreen';
-// import GratitudeJarScreen from '../screens/GratitudeJarScreens/GratitudeJarScreen';
-// import GratitudeListScreen from '../screens/GratitudeJarScreens/GratitudeList';
-// import AddGratitudeScreen from '../screens/GratitudeJarScreens/AddGratitude';
-// import React from "react";
-// import { createStackNavigator } from "@react-navigation/stack";
-// import { NavigationContainer } from "@react-navigation/native";
-// import HomeScreen from "../screens/HomeScreen";
-// import GratitudeJarScreen from "../screens/GratitudeJarScreens/GratitudeJarScreen";
-// import CommunityScreen from "../screens/Community/index";
-// import ProfileScreen from "../screens/Profile/ProfilePage";
-// import SignUp from "../screens/LogScreens/SignUp";
-// import Login from "../screens/LogScreens/LoginScreen";
-
-// const Stack = createStackNavigator();
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import LoginScreen from "../screens/LogScreens/LoginScreen";
+import CalendarScreen from "../screens/Trackers/MoodTrackCal";
+const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Home" }}
-        /> */}
-        {/* <Stack.Screen
-          name="GratitudeJar"
-          component={GratitudeJarScreen}
-          options={{ title: "Gratitude Jar" }}
-        /> */}
-        {/* <Stack.Screen
-          name="Community"
-          component={CommunityScreen}
-          options={{ title: "Community" }}
-        /> */}
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{ title: "Profile" }}
-        />
-        {/* <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ title: "Sign Up" }}
-        />
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
-          component={Login}
+          component={LoginScreen}
           options={{ title: "Login" }}
-        /> */}
+        />
+        <Stack.Screen
+          name="Calendar"
+          component={CalendarScreen}
+          options={{ title: "Calendar" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-// export default AppNavigator;
+export default AppNavigator;

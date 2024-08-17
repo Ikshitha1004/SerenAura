@@ -21,9 +21,10 @@ import { auth } from "../../configs/firebaseConfig";
 
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
-
+import { useNavigation } from "@react-navigation/native";
 const Login = () => {
   const router = useRouter();
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -56,10 +57,12 @@ const Login = () => {
       const user = userCredential.user;
       console.log("User signed in:", user);
       // Navigate to the home screen
-      // router.push("/home");
+      // router.push("/calendar");
+      navigation.navigate("Calendar");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log("im");
       console.error("Error signing in:", errorMessage);
 
       if (
