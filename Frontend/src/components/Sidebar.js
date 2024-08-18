@@ -1,11 +1,25 @@
-// components/Sidebar.js
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { signOut } from "firebase/auth"; // Import Firebase signOut function
+import { getAuth } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 
 const Sidebar = (props) => {
+  const navigation = useNavigation(); // Initialize the navigation hook
+  const auth = getAuth(); // Get the Firebase Auth instance
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth); // Sign out the user
+      navigation.navigate("HomeScreen"); // Navigate to the HomeScreen
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -74,7 +88,7 @@ const Sidebar = (props) => {
               <Ionicons name="log-out-sharp" size={size} color="#000000" />
             )}
             labelStyle={styles.labelStyle}
-            onPress={() => {}}
+            onPress={handleSignOut} // Use the handleSignOut function
           />
         </DrawerContentScrollView>
       </LinearGradient>
