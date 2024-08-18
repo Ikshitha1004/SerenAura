@@ -5,6 +5,7 @@ import LoginScreen from "../screens/LogScreens/LoginScreen";
 import CalendarScreen from "../screens/Trackers/MoodTrackCal";
 const Stack = createStackNavigator();
 import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
+import JournalListScreen from "../screens/JournalScreens/JournalListScreen";
 const AppNavigator = () => {
   return (
     <NavigationContainer>
@@ -17,6 +18,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="JournalEntry"
           component={JournalEntryScreen}
+          options={{ title: "journal" }}
+        />
+        <Stack.Screen
+          name="JournalList"
+          component={JournalListScreen}
           options={{ title: "journal" }}
         />
       </Stack.Navigator>
