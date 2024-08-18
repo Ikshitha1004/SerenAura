@@ -48,6 +48,7 @@ const DashboardScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <Entypo name="menu" size={40} color="#000" style={styles.menuIcon}/>
         <Text style={styles.greeting}>Hello, Sheenu</Text>
 
         {/* Profile Icon */}
@@ -123,6 +124,11 @@ const styles = StyleSheet.create({
   profileIcon: {
     position: 'absolute',
     right: 0,
+    top: 0,
+  },
+  menuIcon: {
+    position: 'absolute',
+    left: 0,
     top: 0,
   },
   iconScrollContainer: {
