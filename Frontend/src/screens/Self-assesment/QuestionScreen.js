@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import questions from "../../data/questions";
+import { auth, db } from "../../configs/firebaseConfig";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 
 export default function QuestionScreen({ route, navigation }) {
   const { questionIndex } = route.params;
 
-  // State to keep track of selected options for each question
   const [selectedOptions, setSelectedOptions] = useState(
     Array(questions.length).fill(null)
   );
 
-  // Set the selected option for the current question
   const handleOptionSelect = (index) => {
     const updatedSelections = [...selectedOptions];
     updatedSelections[questionIndex] = index;
     setSelectedOptions(updatedSelections);
   };
 
-  // Calculate the mental wellness score
   const calculateScore = () => {
     return selectedOptions.reduce((total, optionIndex, i) => {
       if (optionIndex !== null) {
@@ -33,16 +32,34 @@ export default function QuestionScreen({ route, navigation }) {
     }, 0);
   };
 
-  const handleNext = () => {
+  const storeScoreInDb = async (score) => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        await updateDoc(userDocRef, {
+          scores: arrayUnion({
+            score: score,
+            timestamp: Date.now(), // Use JavaScript's Date.now() for timestamp
+          }),
+        });
+      } catch (error) {
+        console.error("Error saving score: ", error);
+        Alert.alert("Error", "There was an error saving your score.");
+      }
+    }
+  };
+
+  const handleNext = async () => {
     if (selectedOptions[questionIndex] === null) {
-      // Show warning if the current question is not answered
       Alert.alert("Warning", "Please select an option before proceeding.");
     } else {
       if (questionIndex < questions.length - 1) {
         navigation.navigate("Question", { questionIndex: questionIndex + 1 });
       } else {
         const score = calculateScore();
-        navigation.navigate("Result", { score }); // Passing the score to the ResultScreen
+        await storeScoreInDb(score);
+        navigation.navigate("Result", { score });
       }
     }
   };

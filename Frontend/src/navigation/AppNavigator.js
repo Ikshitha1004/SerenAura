@@ -3,6 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "../screens/LogScreens/LoginScreen";
 import CalendarScreen from "../screens/Trackers/MoodTrackCal";
+import WelcomeScreen from "../screens/Self-assesment/WelcomeScreen"; // Correct default import
+import ResultScreen from "../screens/Self-assesment/ResultScreen";
+import QuestionScreen from "../screens/Self-assesment/QuestionScreen";
+import ProgressTrack from "../screens/Profile/ProgressTrack";
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -18,6 +22,26 @@ const AppNavigator = () => {
           name="Calendar"
           component={CalendarScreen}
           options={{ title: "Calendar" }}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ title: "Welcome" }}
+        />
+        <Stack.Screen
+          name="Result"
+          component={ResultScreen}
+          options={{ title: "Result" }}
+        />
+        <Stack.Screen
+          name="Question"
+          component={QuestionScreen}
+          options={{ title: "Question" }}
+        />
+        <Stack.Screen
+          name="PT"
+          component={ProgressTrack}
+          options={{ title: "PT" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

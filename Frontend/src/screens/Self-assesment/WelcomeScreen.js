@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+<<<<<<< HEAD
     color: "#FFFFFF",
     marginBottom: 30,
     textAlign: "center", 
@@ -41,6 +42,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontWeight:"bold",
     
+=======
+    color: "#F5DEB3", // Color should be here, not textAlign
+    marginBottom: 20,
+    textAlign: "center", // Corrected textAlign value
+>>>>>>> 2299b2138bb3be85429ed0a4bfe38f6dd313163a
   },
   subtitle: {
     fontSize: 16,
@@ -48,6 +54,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: "center",
   },
+<<<<<<< HEAD
   button: {
     backgroundColor: "#FC6C85",
     paddingVertical: 15,
@@ -59,4 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
+=======
+>>>>>>> 2299b2138bb3be85429ed0a4bfe38f6dd313163a
 });
