@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, StyleSheet, Alert } from "react-native";
-import Question from "../components/Question";
-import questions from "../data/questions";
+import Question from "../../components/Question";
+import questions from "../../data/questions";
 
 export default function QuestionScreen({ route, navigation }) {
   const { questionIndex } = route.params;
