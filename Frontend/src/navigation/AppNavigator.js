@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "../screens/LogScreens/LoginScreen";
 import CalendarScreen from "../screens/Trackers/MoodTrackCal";
 const Stack = createStackNavigator();
-
+import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
 const AppNavigator = () => {
   return (
     <NavigationContainer>
@@ -15,9 +15,9 @@ const AppNavigator = () => {
           options={{ title: "Login" }}
         />
         <Stack.Screen
-          name="Calendar"
-          component={CalendarScreen}
-          options={{ title: "Calendar" }}
+          name="JournalEntry"
+          component={JournalEntryScreen}
+          options={{ title: "journal" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
