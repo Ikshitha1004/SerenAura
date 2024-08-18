@@ -160,7 +160,7 @@ export default [
       type: "positive",
     },
     {
-      question: "During the past week, I could not get going",
+      question: "During the past week, I felt unworthy",
       options: [
         "Rarely(less than 1 day)",
         "Sometimes(1-2 days)",
@@ -170,7 +170,7 @@ export default [
       type: "negative",
     },
     {
-      question: "During the past week, I was easily irritated",
+      question: "During the past week, I couldnot shake off the blues even with the helps of friends and family",
       options: [
         "Rarely(less than 1 day)",
         "Sometimes(1-2 days)",
