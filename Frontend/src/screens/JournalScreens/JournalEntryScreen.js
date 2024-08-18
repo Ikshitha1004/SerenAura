@@ -14,7 +14,8 @@ import { collection, addDoc } from "firebase/firestore";
 
 const moodEmojis = ["😃", "😢", "😠", "😕", "😴"]; // Array of mood emojis
 
-const JournalEntryScreen = () => {
+const JournalEntryScreen = ({ route, navigation }) => {
+  const { onSave } = route.params || {}; // Callback function from params
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [title, setTitle] = useState("");
@@ -41,6 +42,8 @@ const JournalEntryScreen = () => {
       alert("Journal entry saved!");
       setTitle("");
       setText("");
+      if (onSave) onSave(); // Call the callback to refresh the list
+      navigation.goBack(); // Navigate back to the list screen
     } catch (e) {
       console.error("Error adding document: ", e);
     }

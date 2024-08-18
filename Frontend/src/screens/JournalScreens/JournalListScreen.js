@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Text, StyleSheet, FlatList, Button } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { fetchJournalEntries } from "../../configs/journalAPI"; // Ensure correct import path
 
 const JournalEntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([]);
 
-  useEffect(() => {
-    const getEntries = async () => {
-      try {
-        const fetchedEntries = await fetchJournalEntries();
-        if (Array.isArray(fetchedEntries)) {
-          setEntries(fetchedEntries);
-        } else {
-          console.warn("Fetched entries are not in the expected format.");
-        }
-      } catch (error) {
-        console.error("Error fetching journal entries:", error);
+  // Function to fetch journal entries
+  const getEntries = useCallback(async () => {
+    try {
+      const fetchedEntries = await fetchJournalEntries();
+      if (Array.isArray(fetchedEntries)) {
+        setEntries(fetchedEntries);
+      } else {
+        console.warn("Fetched entries are not in the expected format.");
       }
-    };
-
-    getEntries();
+    } catch (error) {
+      console.error("Error fetching journal entries:", error);
+    }
   }, []);
+
+  // Fetch entries when the screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      getEntries();
+    }, [getEntries])
+  );
 
   const renderItem = ({ item }) => (
     <View style={styles.entryContainer}>
