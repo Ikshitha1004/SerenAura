@@ -18,12 +18,12 @@ const AppNavigator = () => {
         <Stack.Screen
           name="JournalEntry"
           component={JournalEntryScreen}
-          options={{ title: "journal" }}
+          options={{ title: "New Entry" }}
         />
         <Stack.Screen
           name="JournalList"
           component={JournalListScreen}
-          options={{ title: "journal" }}
+          options={{ title: "Your Journal" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
