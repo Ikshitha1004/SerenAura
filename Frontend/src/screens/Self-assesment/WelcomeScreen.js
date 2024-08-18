@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function WelcomeScreen({ navigation }) {
   return (
@@ -12,10 +12,12 @@ export default function WelcomeScreen({ navigation }) {
         Remember, understanding your feelings is the first step towards taking
         care of yourself.
       </Text>
-      <Button
-        title="Take a Test"
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => navigation.navigate("Question", { questionIndex: 0 })}
-      />
+      >
+        <Text style={styles.buttonText}>Take a Test</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -25,19 +27,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2D3748",
-    padding: 20,
+    backgroundColor: "#e6e6fa",
+    padding: 50,
   },
   title: {
     fontSize: 24,
-    color: "#F5DEB3",
-    marginBottom: 20,
-    textAlign: "#F5DEB3",
+    color: "#FFFFFF",
+    marginBottom: 30,
+    textAlign: "center", 
+    backgroundColor: "#FC6C85",
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    fontWeight:"bold",
+    
   },
   subtitle: {
     fontSize: 16,
-    color: "#ccc",
+    color: "#1C1C1C",
     marginBottom: 40,
+    textAlign: "center",
+  },
+  button: {
+    backgroundColor: "#FC6C85",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
     textAlign: "center",
   },
 });
