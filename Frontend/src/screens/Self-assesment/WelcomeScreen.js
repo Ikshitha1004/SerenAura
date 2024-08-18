@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: "#F5DEB3",
+    color: "#F5DEB3", // Color should be here, not textAlign
     marginBottom: 20,
-    textAlign: "#F5DEB3",
+    textAlign: "center", // Corrected textAlign value
   },
   subtitle: {
     fontSize: 16,
