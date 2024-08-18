@@ -6,10 +6,10 @@ const Bottom = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.row}>
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Progress" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Sleep" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Self-assess" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Reward" size={60} />
+        <Card icon={require('../../assets/Profileicons/image.png')} description="Progress" size={60} />
+        <Card icon={require('../../assets/Profileicons/image.png')} description="Sleep" size={60} />
+        <Card icon={require('../../assets/Profileicons/image.png')} description="Self-assess" size={60} />
+        <Card icon={require('../../assets/Profileicons/image.png')} description="Reward" size={60} />
       </View>
     </ScrollView>
   );

@@ -1,8 +1,50 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
 import { Entypo, FontAwesome6 } from '@expo/vector-icons'; // Importing FontAwesome and Entypo icons from Expo Vector Icons
+import { db } from '../../configs/firebaseConfig'; // Adjust the path as needed
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ navigation }) => {
+  const [userEvents, setUserEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserEvents = async () => {
+      try {
+        // Fetch events user has joined
+        const q = query(collection(db, 'events'), where('joined', '==', true));
+        const querySnapshot = await getDocs(q);
+        const events = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setUserEvents(events);
+
+        // Filter events for today
+        const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const todayEvents = events.filter(event => event.date === today);
+        setFilteredEvents(todayEvents);
+      } catch (error) {
+        Alert.alert('Error', 'Failed to fetch events');
+        console.error('Error fetching events: ', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserEvents();
+  }, []);
+
+  const handleFooterPress = (screen) => {
+    navigation.navigate(screen);
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,33 +64,40 @@ const DashboardScreen = () => {
 
       <Text style={styles.taskTitle}>Today's Tasks</Text>
 
-      <View style={styles.eventContainer}>
-        <View style={[styles.eventCard, styles.eventCard1]}>
-          <View style={styles.eventIconContainer}>
-            <Image source={require('../../assets/DashBoardIcons/Community.png')} style={styles.eventIcon} />
-          </View>
-          <View style={styles.eventTextContainer}>
-            <Text style={styles.eventTitle}>Community Gathering</Text>
-            <Text style={styles.eventDescription}>Let's open up to the thing that matters among the people</Text>
-          </View>
-        </View>
-
-        <View style={[styles.eventCard, styles.eventCard2]}>
-          <View style={styles.eventIconContainer}>
-            <Image source={require('../../assets/DashBoardIcons/Aura.png')} style={styles.eventIcon} />
-          </View>
-          <View style={styles.eventTextContainer}>
-            <Text style={styles.eventTitle}>Motivation</Text>
-            <Text style={styles.eventDescription}>Aura is the most important thing that matters to you. Join us on...</Text>
-          </View>
-        </View>
-      </View>
+      <ScrollView style={styles.eventContainer}>
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map(event => (
+            <View key={event.id} style={[styles.eventCard, styles.eventCard2]}>
+              <View style={styles.eventIconContainer}>
+                <Image source={require('../../assets/DashBoardIcons/Aura.png')} style={styles.eventIcon} />
+              </View>
+              <View style={styles.eventTextContainer}>
+                <Text style={styles.eventTitle}>{event.title}</Text>
+                <Text style={styles.eventDescription}>{event.description}</Text>
+                <TouchableOpacity style={styles.joinButton} onPress={() => navigation.navigate('EventDetail', { eventId: event.id })}>
+                  <Text style={styles.joinButtonText}>Join Now</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))
+        ) : (
+          <Text style={styles.noEventsText}>No events for today</Text>
+        )}
+      </ScrollView>
 
       <View style={styles.footerIconsContainer}>
-        <Entypo name="home" size={30} color="#000" style={styles.footerIcon} />
-        <Entypo name="cog" size={30} color="#000" style={styles.footerIcon} />
-        <FontAwesome6 name="jar" size={30} color="#000" style={styles.footerIcon} />
-        <Entypo name="users" size={30} color="#000" style={styles.footerIcon} />
+        <TouchableOpacity onPress={() => handleFooterPress('Community')}>
+          <Entypo name="home" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress('Settings')}>
+          <Entypo name="cog" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress('GratitudeJar')}>
+          <FontAwesome6 name="jar" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress('Users')}>
+          <Entypo name="users" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -74,8 +123,7 @@ const styles = StyleSheet.create({
   profileIcon: {
     position: 'absolute',
     right: 0,
-    margintop: 0,
-    padding: 0,
+    top: 0,
   },
   iconScrollContainer: {
     flexDirection: 'row',
@@ -99,8 +147,8 @@ const styles = StyleSheet.create({
   eventCard: {
     flexDirection: 'row',
     borderRadius: 10,
-    padding: 40,
-    marginBottom: 30,
+    padding: 20,
+    marginBottom: 10,
   },
   eventCard1: {
     backgroundColor: '#FCE4EC', // Light pink background color
@@ -115,7 +163,7 @@ const styles = StyleSheet.create({
   },
   eventIcon: {
     width: 40,
-    height: 50,
+    height: 40,
     borderRadius: 20,
   },
   eventTextContainer: {
@@ -130,6 +178,25 @@ const styles = StyleSheet.create({
   eventDescription: {
     fontSize: 15,
     color: '#FFFFFF',
+  },
+  joinButton: {
+    marginTop: 10,
+    backgroundColor: '#FF4081', // Button background color
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+    alignSelf: 'flex-start',
+  },
+  joinButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  noEventsText: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 20,
   },
   footerIconsContainer: {
     flexDirection: 'row',

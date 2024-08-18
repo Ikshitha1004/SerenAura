@@ -40,22 +40,20 @@ const Middle = () => {
 const styles = StyleSheet.create({
   main: {
     marginTop: 30,
-    backgroundColor: "white", // Ensure a visible background color
-    padding: 20, // Add padding to avoid edges
   },
   imageContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20, // Add spacing
   },
   image: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    marginTop: 5,
   },
   userName: {
     fontSize: 16,
-    color: "black", // Changed to black for better visibility
+    color: "white",
     fontWeight: "bold",
     marginTop: 10,
   },
