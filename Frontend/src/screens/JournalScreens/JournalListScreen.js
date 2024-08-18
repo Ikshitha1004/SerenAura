@@ -77,7 +77,8 @@ const JournalEntriesScreen = ({ navigation }) => {
         <Button
           title="Add Entry"
           onPress={() => navigation.navigate("JournalEntry")}
-          color="#007bff"
+          color="#000000"
+          
         />
       </View>
     </View>
@@ -85,21 +86,21 @@ const JournalEntriesScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "#f5f5f5" },
+  container: { flex: 1, padding: 16, backgroundColor: "#eeeeee" },
   entryContainer: {
-    padding: 16,
-    marginBottom: 8,
-    backgroundColor: "#fff",
+    padding: 20,
+    marginBottom: 10,
+    backgroundColor: "#FFC0CB",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 3,
   },
-  title: { fontSize: 18, fontWeight: "bold" },
-  date: { fontSize: 14, color: "#888", marginBottom: 4 },
+  title: { fontSize: 20, fontWeight: "bold" ,  },
+  date: { fontSize: 14, color: "#4B4B4B", marginBottom: 4 },
   preview: { fontSize: 16, color: "#333" },
-  mood: { fontSize: 20, color: "#f39c12" },
+  mood: { fontSize: 20, color: "#fff" },
   emptyText: {
     textAlign: "center",
     marginTop: 20,
@@ -109,6 +110,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 20,
     alignItems: "center",
+    fontSize: 16
+    
   },
 });
 
