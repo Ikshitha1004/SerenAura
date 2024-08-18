@@ -72,23 +72,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#EEEEEE',
     paddingHorizontal: 10,
   },
   initial: {
     fontSize: 18,
-    color: '#999',
+    color: '#000000',
     marginVertical: 20,
   },
   addNoteButton: {
     marginTop: 20,
     padding: 15,
-    backgroundColor: '#e0bbf3',
+    backgroundColor: '#FC6C85',
     borderRadius: 10,
   },
   button: {
     fontSize: 18,
-    color: '#333',
+    color: '#000000',
   },
 });
 

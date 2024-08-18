@@ -143,22 +143,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#e6e6fa', // Change later
+    backgroundColor: '#fff', // Change later
   },
   openJarButton: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#e0bbf3',
+    backgroundColor: '#FC6C85',
     borderRadius: 10,
   },
   button: {
     fontSize: 18,
-    color: '#333',
+    color: '#000000',
   },
   congratsText: {
     marginTop: 20,
     fontSize: 18,
-    color: '#4caf50',
+    color: '#000000',
   },
 });
 
