@@ -5,6 +5,7 @@ import { fetchJournalEntries } from "../../configs/journalAPI"; // Ensure correc
 
 const JournalEntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Track authentication state
 
   // Function to fetch journal entries
   const getEntries = useCallback(async () => {
@@ -17,6 +18,9 @@ const JournalEntriesScreen = ({ navigation }) => {
       }
     } catch (error) {
       console.error("Error fetching journal entries:", error);
+      if (error.message.includes("User is not authenticated")) {
+        setIsAuthenticated(false); // Handle unauthenticated state
+      }
     }
   }, []);
 
@@ -26,6 +30,23 @@ const JournalEntriesScreen = ({ navigation }) => {
       getEntries();
     }, [getEntries])
   );
+
+  if (!isAuthenticated) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.emptyText}>
+          Please log in to view your journal entries.
+        </Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Go to Login"
+            onPress={() => navigation.navigate("Login")}
+            color="#007bff"
+          />
+        </View>
+      </View>
+    );
+  }
 
   const renderItem = ({ item }) => (
     <View style={styles.entryContainer}>

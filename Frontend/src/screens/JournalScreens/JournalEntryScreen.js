@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   Text,
   Modal,
+  Alert,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { db } from "../../configs/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const moodEmojis = ["😃", "😢", "😠", "😕", "😴"]; // Array of mood emojis
 
@@ -22,6 +24,21 @@ const JournalEntryScreen = ({ route, navigation }) => {
   const [text, setText] = useState("");
   const [selectedMood, setSelectedMood] = useState(null); // Track selected mood
   const [showMoodPicker, setShowMoodPicker] = useState(false); // Control mood picker visibility
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      Alert.alert(
+        "Not Authorized",
+        "You must be logged in to add a journal entry."
+      );
+      navigation.goBack(); // Navigate back if not authenticated
+    }
+  }, [navigation]);
 
   const onChange = (event, selectedDate) => {
     setShowDatePicker(false);
@@ -31,21 +48,25 @@ const JournalEntryScreen = ({ route, navigation }) => {
   };
 
   const saveJournalEntry = async () => {
+    if (!user) return; // Ensure user is authenticated
+
     try {
       await addDoc(collection(db, "journalEntries"), {
+        userId: user.uid, // Associate entry with authenticated user
         date: date.toISOString(),
         title: title,
         text: text,
         mood: selectedMood, // Save selected mood
         createdAt: new Date().toISOString(),
       });
-      alert("Journal entry saved!");
+      Alert.alert("Success", "Journal entry saved!");
       setTitle("");
       setText("");
       if (onSave) onSave(); // Call the callback to refresh the list
       navigation.goBack(); // Navigate back to the list screen
     } catch (e) {
       console.error("Error adding document: ", e);
+      Alert.alert("Error", "Failed to save journal entry. Please try again.");
     }
   };
 
