@@ -6,7 +6,7 @@ import CalendarScreen from "../screens/Trackers/MoodTrackCal";
 import WelcomeScreen from "../screens/Self-assesment/WelcomeScreen"; // Correct default import
 import ResultScreen from "../screens/Self-assesment/ResultScreen";
 import QuestionScreen from "../screens/Self-assesment/QuestionScreen";
-
+import ProgressTrack from "../screens/Profile/ProgressTrack";
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -37,6 +37,11 @@ const AppNavigator = () => {
           name="Question"
           component={QuestionScreen}
           options={{ title: "Question" }}
+        />
+        <Stack.Screen
+          name="PT"
+          component={ProgressTrack}
+          options={{ title: "PT" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
