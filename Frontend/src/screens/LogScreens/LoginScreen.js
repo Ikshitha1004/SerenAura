@@ -59,7 +59,8 @@ const Login = () => {
       // Navigate to the home screen
       // router.push("/calendar");
       // navigation.navigate("")
-      navigation.navigate("JournalList");
+      //navigation.navigate("JournalList");
+      navigation.navigate("Calendar");
       //navigation.navigate("JournalEntry");
     } catch (error) {
       const errorCode = error.code;

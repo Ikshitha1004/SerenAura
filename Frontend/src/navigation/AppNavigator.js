@@ -25,6 +25,11 @@ const AppNavigator = () => {
           component={JournalListScreen}
           options={{ title: "Your Journal" }}
         />
+        <Stack.Screen
+          name="Calendar"
+          component={CalendarScreen}
+          options={{ title: "calandar" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
