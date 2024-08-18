@@ -1,25 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
+import { getAuth } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../../configs/firebaseConfig'; 
 
 const getRandomColor = () => {
   const l = '0123456789ABCDEF';
   let col = '#';
-  for (let i = 0; i < 6; i++) 
-  {
+  for (let i = 0; i < 6; i++) {
     col += l[Math.floor(Math.random() * 16)];
   }
   return col;
 };
 
 const GratJar = ({ navigation, route }) => {
-  const [fillPercent, setfillPercent] = useState(0);
+  const [fillPercent, setFillPercent] = useState(0);
   const [showCongrats, setShowCongrats] = useState(false);
   const [notes, setNotes] = useState([]);
-  const [jarColor, setJarColor] = useState('#ffb6c1'); // Default color
+  const [jarColor, setJarColor] = useState('#ffb6c1'); 
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   useEffect(() => {
-    // Handle new note addition
+    const fetchFillPercent = async () => {
+      if (user) {
+        try {
+          const docRef = doc(db, 'users', user.uid, 'jar', 'data');
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setFillPercent(data.fillPercent || 0);
+          }
+        } catch (error) {
+          console.error('Error fetching fillPercent: ', error);
+        }
+      }
+    };
+
+    fetchFillPercent();
+  }, [user]);
+
+  useEffect(() => {
     if (route.params?.newNote) {
       const newNotes = [...notes, route.params.newNote];
       setNotes(newNotes);
@@ -27,35 +50,60 @@ const GratJar = ({ navigation, route }) => {
     }
   }, [route.params?.newNote]);
 
-  // Calculate the fill height based on the percentage
+  // Calculating the fill height based on the percentage
   const totalH = 230 - 23; // Total height of the jar minus the cap area
   const currFillH = totalH * (fillPercent / 100);
 
-  // Function to handle adding a new note
-  const handleAddNote = () => {
+  
+  const handleAddNote = async () => {
     if (fillPercent < 100) {
-      const upd = fillPercent + 5;
-      setfillPercent(upd);
-      setJarColor(getRandomColor()); // Set a new color for the jar
+      const updatedFillPercent = fillPercent + 5;
+      setFillPercent(updatedFillPercent);
+      setJarColor(getRandomColor());
 
-      if (upd >= 100) {
+      if (updatedFillPercent >= 100) {
         setShowCongrats(true);
         setTimeout(resetJar, 2000);
+      }
+
+      // Saving percentage to Firestore
+      if (user) {
+        try {
+          await setDoc(
+            doc(db, 'users', user.uid, 'jar', 'data'),
+            { fillPercent: updatedFillPercent },
+            { merge: true }
+          );
+        } catch (error) {
+          console.error('Error saving fill percent: ', error);
+        }
       }
     }
   };
 
-  // Function to reset the jar
-  const resetJar = () => {
+  const resetJar = async () => {
     setShowCongrats(false);
-    setfillPercent(0);
+    setFillPercent(0);
     setJarColor('#ffb6c1');
+
+    // Resets the fillPercent in Firestore
+    if (user) {
+      try {
+        await setDoc(
+          doc(db, 'users', user.uid, 'jar', 'data'),
+          { fillPercent: 0 },
+          { merge: true }
+        );
+      } catch (error) {
+        console.error('Error resetting fillPercent: ', error);
+      }
+    }
   };
 
   return (
     <View style={styles.container}>
       {/* Jar */}
-      <Svg height='250' width="150" viewBox="0 0 150 250">
+      <Svg height="250" width="150" viewBox="0 0 150 250">
         {/*Cap*/}
         <Rect x="20" y="0" width="110" height="15" fill="#d2691e" rx="7" />
         <Rect x="20" y="15" width="110" height="8" fill="#d2691e" rx="4" />
@@ -84,7 +132,7 @@ const GratJar = ({ navigation, route }) => {
         <Text style={styles.button}>Open the Jar</Text>
       </TouchableOpacity>
 
-      {/* Congratulatory Message */}
+    
       {showCongrats && <Text style={styles.congratsText}>Congrats! The jar is full! Here is a new jar for you!</Text>}
     </View>
   );
@@ -95,7 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#e6e6fa',//change later
+    backgroundColor: '#e6e6fa', // Change later
   },
   openJarButton: {
     marginTop: 20,
