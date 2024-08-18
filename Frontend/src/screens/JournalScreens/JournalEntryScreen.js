@@ -1,11 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
-  Button,
-  StyleSheet,
   TouchableOpacity,
   Text,
+  StyleSheet,
   Modal,
   Alert,
 } from "react-native";
@@ -14,16 +14,17 @@ import { db } from "../../configs/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-const moodEmojis = ["😃", "😢", "😠", "😕", "😴"]; // Array of mood emojis
+
+const moodEmojis = ["😃", "😢", "😠", "😕", "😴"];
 
 const JournalEntryScreen = ({ route, navigation }) => {
-  const { onSave } = route.params || {}; // Callback function from params
+  const { onSave } = route.params || {}; 
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [selectedMood, setSelectedMood] = useState(null); // Track selected mood
-  const [showMoodPicker, setShowMoodPicker] = useState(false); // Control mood picker visibility
+  const [selectedMood, setSelectedMood] = useState(null); 
+  const [showMoodPicker, setShowMoodPicker] = useState(false); 
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const JournalEntryScreen = ({ route, navigation }) => {
         "Not Authorized",
         "You must be logged in to add a journal entry."
       );
-      navigation.goBack(); // Navigate back if not authenticated
+      navigation.goBack(); 
     }
   }, [navigation]);
 
@@ -48,22 +49,22 @@ const JournalEntryScreen = ({ route, navigation }) => {
   };
 
   const saveJournalEntry = async () => {
-    if (!user) return; // Ensure user is authenticated
+    if (!user) return;
 
     try {
       await addDoc(collection(db, "journalEntries"), {
-        userId: user.uid, // Associate entry with authenticated user
+        userId: user.uid, 
         date: date.toISOString(),
         title: title,
         text: text,
-        mood: selectedMood, // Save selected mood
+        mood: selectedMood, 
         createdAt: new Date().toISOString(),
       });
       Alert.alert("Success", "Journal entry saved!");
       setTitle("");
       setText("");
-      if (onSave) onSave(); // Call the callback to refresh the list
-      navigation.goBack(); // Navigate back to the list screen
+      if (onSave) onSave(); 
+      navigation.goBack(); 
     } catch (e) {
       console.error("Error adding document: ", e);
       Alert.alert("Error", "Failed to save journal entry. Please try again.");
@@ -72,7 +73,7 @@ const JournalEntryScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Emoji and Text */}
+      
       <View style={styles.emojiContainer}>
         <TouchableOpacity
           style={styles.emojiButton}
@@ -80,14 +81,19 @@ const JournalEntryScreen = ({ route, navigation }) => {
         >
           <Text style={styles.emojiImage}>
             {selectedMood || "😊"}{" "}
-            {/* Display selected mood or default emoji */}
+           
           </Text>
         </TouchableOpacity>
         <Text style={styles.selectMoodText}>Select Mood</Text>
       </View>
 
       <View style={styles.contentContainer}>
-        <Button onPress={() => setShowDatePicker(true)} title="Pick a Date" />
+        <TouchableOpacity
+          style={styles.dateButton}
+          onPress={() => setShowDatePicker(true)}
+        >
+          <Text style={styles.dateButtonText}>Pick a Date</Text>
+        </TouchableOpacity>
         {showDatePicker && (
           <DateTimePicker
             value={date}
@@ -109,7 +115,9 @@ const JournalEntryScreen = ({ route, navigation }) => {
           onChangeText={setText}
           multiline
         />
-        <Button title="Save Entry" onPress={saveJournalEntry} />
+        <TouchableOpacity style={styles.saveButton} onPress={saveJournalEntry}>
+          <Text style={styles.saveButtonText}>Save Entry</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Mood Picker Modal */}
@@ -134,6 +142,7 @@ const JournalEntryScreen = ({ route, navigation }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -143,39 +152,67 @@ const styles = StyleSheet.create({
   emojiContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 25,
   },
   emojiButton: {
     position: "relative",
-    backgroundColor: "#fff",
+    backgroundColor: "#000000",
     borderRadius: 20,
     alignItems: "center",
-    padding: 5,
-    left: 20,
+    padding: 15,
+    left: 10,
   },
   emojiImage: {
-    fontSize: 40, // Adjust size as needed
+    fontSize: 30,
+    left: 5,
+    alignItems: "center",
   },
   selectMoodText: {
     fontSize: 20,
     marginLeft: 8,
-    color: "#333",
+    color: "#FC6C85",
     left: 20,
     fontFamily: "Poppins_700Bold",
   },
   contentContainer: {
-    marginTop: 5, // Adjust this value if needed
+    marginTop: 10,
   },
   input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
+    height: 70,
+    borderColor: "#000000",
+    borderWidth: 2,
+    marginBottom: 10,
+    paddingHorizontal: 16,
   },
   textArea: {
-    height: 120,
-    textAlignVertical: "top",
+    height: 150,
+    textAlignVertical: "center",
+  },
+  dateButton: {
+    backgroundColor: "#FC6C85",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  dateButtonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontFamily: "Poppins_700Bold",
+  },
+  saveButton: {
+    backgroundColor: "#FC6C85",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  saveButtonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontFamily: "Poppins_700Bold",
   },
   modalContainer: {
     flex: 1,
@@ -184,9 +221,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   moodPickerContainer: {
-    backgroundColor: "#fff",
-    padding: 20,
-    borderRadius: 10,
+    backgroundColor: "#000000",
+    padding: 15,
+    borderRadius: 15,
     flexDirection: "row",
     justifyContent: "space-around",
     width: "80%",
@@ -197,3 +234,4 @@ const styles = StyleSheet.create({
 });
 
 export default JournalEntryScreen;
+
