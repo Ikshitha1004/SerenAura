@@ -8,7 +8,8 @@ import ResultScreen from "../screens/Self-assesment/ResultScreen";
 import QuestionScreen from "../screens/Self-assesment/QuestionScreen";
 import ProgressTrack from "../screens/Profile/ProgressTrack";
 const Stack = createStackNavigator();
-
+import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
+import JournalListScreen from "../screens/JournalScreens/JournalListScreen";
 const AppNavigator = () => {
   return (
     <NavigationContainer>
@@ -19,9 +20,19 @@ const AppNavigator = () => {
           options={{ title: "Login" }}
         />
         <Stack.Screen
+          name="JournalEntry"
+          component={JournalEntryScreen}
+          options={{ title: "New Entry" }}
+        />
+        <Stack.Screen
+          name="JournalList"
+          component={JournalListScreen}
+          options={{ title: "Your Journal" }}
+        />
+        <Stack.Screen
           name="Calendar"
           component={CalendarScreen}
-          options={{ title: "Calendar" }}
+          options={{ title: "calandar" }}
         />
         <Stack.Screen
           name="Welcome"

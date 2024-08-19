@@ -18,7 +18,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
 import { auth } from "../../configs/firebaseConfig";
-
+import { Alert } from "react-native";
 // Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
 import { useNavigation } from "@react-navigation/native";
@@ -58,8 +58,10 @@ const Login = () => {
       console.log("User signed in:", user);
       // Navigate to the home screen
       // router.push("/calendar");
-      navigation.navigate("PT");
-      //navigation.navigate("Calendar");
+
+      // navigation.navigate("")
+      navigation.navigate("Home")
+
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -70,9 +72,15 @@ const Login = () => {
         errorCode === "auth/user-not-found" ||
         errorCode === "auth/wrong-password"
       ) {
-        ToastAndroid.show("Invalid credentials", ToastAndroid.LONG);
+        Alert.alert(
+          "Invalid credentials",
+          "Please check your username and password."
+        );
       } else {
-        ToastAndroid.show("An error occurred", ToastAndroid.LONG);
+        Alert.alert(
+          "An error occurred",
+          "Something went wrong. Please try again later."
+        );
       }
     }
   };
