@@ -201,7 +201,7 @@ const CalendarScreen = () => {
         height={220}
         yAxisLabel=""
         chartConfig={{
-          backgroundColor: "#e26a00",
+          backgroundColor: "#lavender",
           backgroundGradientFrom: "#fb8c00",
           backgroundGradientTo: "#ffa726",
           decimalPlaces: 0,
