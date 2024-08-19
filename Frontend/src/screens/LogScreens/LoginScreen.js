@@ -58,8 +58,10 @@ const Login = () => {
       console.log("User signed in:", user);
       // Navigate to the home screen
       // router.push("/calendar");
+
       // navigation.navigate("")
       navigation.navigate("Home")
+
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
