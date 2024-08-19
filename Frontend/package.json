@@ -20,6 +20,7 @@
     "expo": "latest",
     "expo-av": "~14.0.6",
     "expo-image": "~1.12.13",
+    "expo-image-picker": "~15.0.7",
     "expo-router": "~3.5.23",
     "expo-splash-screen": "^0.27.5",
     "expo-status-bar": "~1.12.1",
