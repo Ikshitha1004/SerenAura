@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   Alert,
   StyleSheet,
   TouchableOpacity,
@@ -11,8 +10,9 @@ import {
 } from "react-native";
 import { getAuth, updatePassword, updateProfile } from "firebase/auth";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
-
+import { useNavigation } from "@react-navigation/native";
 const SettingsScreen = () => {
+  const navigation = useNavigation();
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -56,7 +56,7 @@ const SettingsScreen = () => {
 
   const handlePrivacyPolicy = () => {
     // Navigate to Privacy Policy screen or show a modal with the privacy policy
-    // navigation.navigate("PrivacyPolicyScreen");
+    navigation.navigate("Policies");
   };
 
   return (
@@ -71,15 +71,24 @@ const SettingsScreen = () => {
             editable={isEditingUsername}
             autoCapitalize="none"
           />
-          <TouchableOpacity onPress={() => setIsEditingUsername(true)}>
+          <TouchableOpacity
+            style={styles.editIconContainer}
+            onPress={() => setIsEditingUsername(true)}
+          >
             <Image
               style={styles.editIcon}
               source={require("../../assets/edit-icon.png")}
             />
+            <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
         </View>
         {isEditingUsername && (
-          <Button title="Update Username" onPress={handleUsernameChange} />
+          <TouchableOpacity
+            style={styles.updateButton}
+            onPress={handleUsernameChange}
+          >
+            <Text style={styles.updateButtonText}>Update Username</Text>
+          </TouchableOpacity>
         )}
       </View>
 
@@ -102,7 +111,12 @@ const SettingsScreen = () => {
             />
           </TouchableOpacity>
         </View>
-        <Button title="Update Password" onPress={handlePasswordChange} />
+        <TouchableOpacity
+          style={styles.updateButton}
+          onPress={handlePasswordChange}
+        >
+          <Text style={styles.updateButtonText}>Update Password</Text>
+        </TouchableOpacity>
       </View>
 
       <TouchableOpacity
@@ -119,7 +133,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#EEEEEE",
   },
   fieldContainer: {
     marginBottom: 30,
@@ -131,7 +145,7 @@ const styles = StyleSheet.create({
   },
   usernameInputContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   input: {
     flex: 1,
@@ -141,11 +155,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "#fff",
   },
+  editIconContainer: {
+    alignItems: "center",
+    marginLeft: 10,
+  },
   editIcon: {
     width: 20,
     height: 20,
-    marginLeft: 10,
-    tintColor: "#007bff",
+    tintColor: "#FC6C85",
+  },
+  editText: {
+    fontSize: 12,
+    color: "#007bff",
+    marginTop: 2,
+    color: "#FC6C85",
   },
   passwordInputContainer: {
     flexDirection: "row",
@@ -155,7 +178,20 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginLeft: 10,
-    tintColor: "#007bff",
+    tintColor: "#FC6C85",
+  },
+  updateButton: {
+    marginTop: 10,
+    backgroundColor: "#FC6C85",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  updateButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   privacyButton: {
     marginTop: 40,
@@ -163,7 +199,7 @@ const styles = StyleSheet.create({
   },
   privacyText: {
     fontSize: 16,
-    color: "#007bff",
+    color: "black",
   },
 });
 
