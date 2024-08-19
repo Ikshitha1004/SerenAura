@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } fr
 import { Entypo, FontAwesome6 } from '@expo/vector-icons'; // Importing FontAwesome and Entypo icons from Expo Vector Icons
 import { db } from '../../configs/firebaseConfig'; // Adjust the path as needed
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import MenuButton from '../../components/MenuButton';
 
 const DashboardScreen = ({ navigation }) => {
   const [userEvents, setUserEvents] = useState([]);
@@ -48,7 +49,7 @@ const DashboardScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Entypo name="menu" size={40} color="#000" style={styles.menuIcon}/>
+        <MenuButton navigation={navigation} />
         <Text style={styles.greeting}>Hello, Sheenu</Text>
 
         {/* Profile Icon */}

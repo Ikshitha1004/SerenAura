@@ -5,6 +5,10 @@ const DateRow = ({ dates, handleDatePress }) => {
   // Helper function to format date into "MMM dd" format
   const formatDate = (dateString) => {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      console.warn(`Invalid date format: ${dateString}`);
+      return ''; // Return an empty string if date is invalid
+    }
     const options = { month: 'short', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   };
@@ -32,9 +36,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5, // Reduced horizontal padding
   },
   dateButton: {
-    marginRight: 5, // Reduced margin between buttons
-    paddingHorizontal: 8, // Reduced horizontal padding
-    paddingVertical: 3, // Reduced vertical padding
+    marginRight: 10, // Reduced margin between buttons
+    paddingHorizontal: 50, // Reduced horizontal padding
+    paddingVertical: 4, // Reduced vertical padding
     backgroundColor: '#444', // Button background color
     borderRadius: 5,
     height: 60, // Reduced height of the button
