@@ -94,14 +94,14 @@ const Progress = () => {
               datasets: [{ data: scores }],
             }}
             width={Dimensions.get("window").width - 20} // Width of the graph
-            height={220}
+            height={450}
             yAxisLabel=""
             yAxisSuffix=""
             yAxisInterval={1}
             chartConfig={{
-              backgroundColor: "#e26a00",
-              backgroundGradientFrom: "#fb8c00",
-              backgroundGradientTo: "#ffa726",
+              backgroundColor: "#F0595B",
+              backgroundGradientFrom: "#FD5E60",
+              backgroundGradientTo: "#F0595B",
               decimalPlaces: 2,
               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -119,26 +119,35 @@ const Progress = () => {
           </View>
         </>
       ) : (
-        <Text>No data available</Text>
+        <Text style={styles.nodata}>
+        No data available{'\n'}
+        Please take the self-assesment test
+      </Text>
+      
+        
       )}
     </View>
   );
-};
+}; 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
   },
   chart: {
-    marginVertical: 8,
+    marginVertical: "20%",
     borderRadius: 16,
+    right : "2%",
+    height:"40%",
+    
+    
   },
   card: {
-    marginTop: 20,
+    marginTop: 40,
     padding: 15,
     borderRadius: 10,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#FFC0CB",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -154,6 +163,12 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 16,
     textAlign: "center",
+  },
+  nodata: {
+    marginTop: "80%",
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
 
