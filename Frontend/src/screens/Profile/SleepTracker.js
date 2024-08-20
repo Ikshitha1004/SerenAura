@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#282C34', // Dark background color
+    backgroundColor: '#fff', // Dark background color
   },
   circleContainer: {
     marginBottom: 20,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     marginTop: 10,
-    backgroundColor: '#444', // Dark background circle
+    backgroundColor: '#000000', // Dark background circle
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -212,7 +212,8 @@ const styles = StyleSheet.create({
   openModalButton: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#fc6c85',
+    marginBottom:"40%",
     borderRadius: 5,
   },
   openModalButtonText: {

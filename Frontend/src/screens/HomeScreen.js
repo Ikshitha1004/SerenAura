@@ -23,7 +23,7 @@ const HomeScreen = () => {
       />
       <Text style={styles.title}>Your companion for calmness</Text>
       <Text style={styles.subTitle}>
-       Come home to SerenAura!Take easier steps to wellness
+       Come home to SerenAura!{"\n"}Take easier steps to wellness
       </Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -40,26 +40,28 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center", // Center items vertically
     padding: 20, // Add padding to avoid edges
   },
   logo: {
-    height: 40,
+    height: 60,
     width: 140,
     marginVertical: 30,
   },
   bannerImage: {
-    marginVertical: 20,
+    marginTop:"-30%",
+    
     height: 250,
     width: 231,
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     paddingHorizontal: 20,
     textAlign: "center",
     marginTop: 40,
+    fontWeight:"bold"
   },
   subTitle: {
     fontSize: 18,

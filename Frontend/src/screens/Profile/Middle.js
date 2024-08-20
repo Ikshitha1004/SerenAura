@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 16,
-    color: "white",
+    color: "#fc6c85",
     fontWeight: "bold",
     marginTop: 10,
   },
   userEmail: {
     fontSize: 14,
-    color: "lightgray",
+    color: "#000000",
     marginTop: 5,
   },
 });
