@@ -1,38 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image } from "react-native";
-// Uncomment and use if fetching user data from Firebase
-// import { auth, db } from "../../configs/firebaseConfig";
-// import { getDoc, doc } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../../configs/firebaseConfig'; // Adjust the path if necessary
 
 const Middle = () => {
   const [userName, setUserName] = useState("");
-  const [appliedCount, setAppliedCount] = useState(28); // Example static value
-  const [reviewedCount, setReviewedCount] = useState(73); // Example static value
-  const [contactedCount, setContactedCount] = useState(18); // Example static value
+  const [userEmail, setUserEmail] = useState("");
+  const [userAvatar, setUserAvatar] = useState(null);
 
-  //Uncomment and use if fetching user data from Firebase
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     const user = auth.currentUser;
-  //     if (user) {
-  //       const userDoc = await getDoc(doc(db, "users", user.uid));
-  //       if (userDoc.exists()) {
-  //         const userData = userDoc.data();
-  //         setUserName(userData.fullName);
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            setUserName(userData.userName || user.displayName || "Unknown");
+            setUserEmail(userData.email || user.email || "No email");
+            setUserAvatar(userData.avatar || null);
+            console.log(userData.avatar);
+          } else {
+            console.log('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      } else {
+        console.log('No user is signed in.');
+      }
+    };
 
-  //   fetchUserData();
-  // }, []);
-
+    fetchUserData();
+  }, []);
+console.log(userAvatar);
   return (
     <View style={styles.main}>
       <View style={styles.imageContainer}>
-        <Image source={require("../../assets/icon.png")} style={styles.image} />
-        <Text style={styles.userName}>ikki</Text> 
+        
+        {userAvatar ? (
+          <Image source={{ uri: userAvatar }} style={styles.image} />
+        ) : (
+           <Image source={require("../../assets/favicon.png")} style={styles.image} />
+        )}
+        <Text style={styles.userName}>{userName}</Text>
+        <Text style={styles.userEmail}>{userEmail}</Text>
       </View>
-   
     </View>
   );
 };
@@ -40,42 +56,28 @@ const Middle = () => {
 const styles = StyleSheet.create({
   main: {
     marginTop: 30,
-    backgroundColor: "white", // Ensure a visible background color
-    padding: 20, // Add padding to avoid edges
+    alignItems: 'center',
   },
   imageContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20, // Add spacing
   },
   image: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    marginTop: 5,
   },
   userName: {
     fontSize: 16,
-    color: "black", // Changed to black for better visibility
+    color: "white",
     fontWeight: "bold",
     marginTop: 10,
   },
-  middleSectionTextContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginTop: 20,
-  },
-  middleSectionText: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  topText: {
-    fontSize: 16,
-    color: "black",
-    fontWeight: "bold",
-  },
-  bottomText: {
-    fontSize: 16,
-    color: "gray",
+  userEmail: {
+    fontSize: 14,
+    color: "lightgray",
+    marginTop: 5,
   },
 });
 

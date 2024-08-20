@@ -15,11 +15,13 @@
     "@react-native-async-storage/async-storage": "^1.24.0",
     "@react-native-community/datetimepicker": "^8.2.0",
     "@react-native-firebase/firestore": "^20.4.0",
+    "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
     "expo": "latest",
     "expo-av": "~14.0.6",
     "expo-image": "~1.12.13",
+    "expo-location": "~17.0.1"
     "expo-image-picker": "~15.0.7",
     "expo-router": "~3.5.23",
     "expo-splash-screen": "^0.27.5",
@@ -36,7 +38,10 @@
     "react-native-screens": "^3.31.1",
     "react-native-sound": "^0.11.2",
     "react-native-svg": "^15.5.0",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "~0.19.10",
+    "expo-linear-gradient": "~13.0.2",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-reanimated": "~3.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

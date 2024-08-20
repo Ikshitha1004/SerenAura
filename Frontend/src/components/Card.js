@@ -14,18 +14,18 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 30,
+    padding: 20,
     backgroundColor: '#f8f9fa',
     marginVertical: 10,
     marginHorizontal: 20,
     borderRadius: 15,
-    shadowColor: 'pink',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 6, // For Android shadow
     width: Dimensions.get('window').width - 40, // Full width minus margin
-    height: 100, // Fixed height for consistency
+    height: 80, // Fixed height for consistency
   },
   icon: {
     resizeMode: 'contain',
