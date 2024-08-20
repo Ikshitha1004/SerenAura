@@ -70,7 +70,7 @@ The Grounding Techniques feature in our app is designed to offer users immediate
 <div>
  
 <img src="https://github.com/user-attachments/assets/205055ac-4e33-42d3-adc7-bdf182553f89" width="200" />
-
+<img src="https://github.com/user-attachments/assets/7199de25-0c42-4d9a-a76c-ce4b323cb926" width="200" />
 <img src="https://github.com/user-attachments/assets/6b8bd70c-823d-4be6-b012-bf75db5181aa" width="200" />
 </div>
 
@@ -84,7 +84,7 @@ The Journaling feature in our app offers users a dedicated space to reflect on t
 Journaling is a powerful tool for self-expression and emotional processing, and this feature in our app encourages regular practice, which can be a key component of maintaining mental well-being.
 <div>
  <img src="https://github.com/user-attachments/assets/26120c3d-bce4-4012-9178-271524565acb" width="200" />
-<img src="https://github.com/user-attachments/assets/7199de25-0c42-4d9a-a76c-ce4b323cb926" width="200" />
+
 
 <img src="https://github.com/user-attachments/assets/35f2c92c-2565-4691-b0e8-f04c2cb5fe67" width="200" />
 </div>
