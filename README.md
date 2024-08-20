@@ -48,6 +48,13 @@ The community interaction feature in our app adds a valuable layer of social sup
 ### **Music**
 The music feature in our app is designed to be a soothing escape for users, offering a selection of peaceful and mind-calming tracks. This feature enhances mental well-being by helping users manage stress, anxiety, and other emotional challenges through the therapeutic power of music. Additionally, the app's music library includes a variety of genres such as peace, meditation, deep sleep, and nature, allowing users to choose what resonates most with their current mood. This personalized experience ensures that users can find the perfect auditory backdrop to support their mental wellness journey.
 
+<div>
+ <img src="https://github.com/user-attachments/assets/65b03dba-d04c-4fe1-875f-138eb3d88067" width="200"/>
+<img src="https://github.com/user-attachments/assets/d2f3c1e1-0104-4a5d-9b67-d07debf9161d" width="200"/>
+<img src="https://github.com/user-attachments/assets/204bb397-2452-4c15-8622-ca4a6ed7e3fa" width="200"/>
+
+
+</div>
 ### **Progress Tracker**
 The Progress Tracker feature in our app offers users a visual representation of their mental wellness journey. By displaying a graph that reflects the scores from their self-assessments over time, users can easily monitor their progress, observe patterns, and identify any significant changes in their mental health. This feature allows users to see how their mental wellness evolves, providing insights that can help them understand the effectiveness of their coping strategies or identify when they might need additional support. The visual feedback from the graph can be motivating, encouraging users to engage consistently with the app's tools and resources as they work towards better mental health.
 
@@ -60,9 +67,12 @@ The Progress Tracker feature in our app offers users a visual representation of 
 
 ### **Grounding Techniques**
 The Grounding Techniques feature in our app is designed to offer users immediate tools to manage anxiety and distress by helping them refocus on the present moment. When users click on the Grounding Techniques option, the app randomly selects a technique from a list that includes methods like the 5-4-3-2-1 method, breathing exercises, and sound awareness techniques. This randomness adds an element of surprise and can keep the experience fresh, preventing users from becoming too accustomed to one particular method. Each technique is crafted to help users create mental space from distressing feelings and bring their attention back to the present, making these exercises particularly effective in moments of high stress or anxiety. The variety of techniques ensures that users can find a method that works best for them in different situations.
-
+<div>
+ 
 <img src="https://github.com/user-attachments/assets/205055ac-4e33-42d3-adc7-bdf182553f89" width="200" />
 
+<img src="https://github.com/user-attachments/assets/6b8bd70c-823d-4be6-b012-bf75db5181aa" width="200" />
+</div>
 
 ### **Journaling**
 The Journaling feature in our app offers users a dedicated space to reflect on their thoughts and experiences.
@@ -74,6 +84,7 @@ The Journaling feature in our app offers users a dedicated space to reflect on t
 Journaling is a powerful tool for self-expression and emotional processing, and this feature in our app encourages regular practice, which can be a key component of maintaining mental well-being.
 <div>
  <img src="https://github.com/user-attachments/assets/26120c3d-bce4-4012-9178-271524565acb" width="200" />
+<img src="https://github.com/user-attachments/assets/7199de25-0c42-4d9a-a76c-ce4b323cb926" width="200" />
 
 <img src="https://github.com/user-attachments/assets/35f2c92c-2565-4691-b0e8-f04c2cb5fe67" width="200" />
 </div>
