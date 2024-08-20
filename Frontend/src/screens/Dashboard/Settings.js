@@ -15,12 +15,10 @@ const SettingsScreen = () => {
   const navigation = useNavigation();
   const auth = getAuth();
   const user = auth.currentUser;
-
   const [username, setUsername] = useState(user?.displayName || "");
   const [password, setPassword] = useState("");
   const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-
   const handleUsernameChange = async () => {
     if (user) {
       try {
@@ -75,10 +73,10 @@ const SettingsScreen = () => {
             style={styles.editIconContainer}
             onPress={() => setIsEditingUsername(true)}
           >
-            {/* <Image
+            <Image
               style={styles.editIcon}
               source={require("../../assets/edit-icon.png")}
-            /> */}
+            />
             <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
         </View>

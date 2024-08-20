@@ -201,9 +201,9 @@ const CalendarScreen = () => {
         height={220}
         yAxisLabel=""
         chartConfig={{
-          backgroundColor: "#lavender",
-          backgroundGradientFrom: "#fb8c00",
-          backgroundGradientTo: "#ffa726",
+          backgroundColor: "#F0595B",
+          backgroundGradientFrom: "#FD5E60",
+          backgroundGradientTo: "#F0595B",
           decimalPlaces: 0,
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -241,21 +241,25 @@ const CalendarScreen = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#967bb6",
+    backgroundColor: "#EEEEEE",
     borderRadius: 12,
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
     fontFamily: "Poppins_700Bold",
-    color: "lavender",
+    color: "#FC6C85",
+    marginTop: 8,
+  },
+  calendar: {
+    width: "100%",
+    marginBottom: 20,
   },
   dayContainer: {
     justifyContent: "center",
@@ -304,7 +308,8 @@ const styles = StyleSheet.create({
   chartTitle: {
     fontSize: 18,
     marginVertical: 10,
-    color: "white",
+    color: "black",
+    textShadowColor: "black",
   },
 });
 
