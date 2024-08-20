@@ -17,12 +17,37 @@ const DashboardScreen = ({ navigation }) => {
         const q = query(collection(db, 'events'), where('joined', '==', true));
         const querySnapshot = await getDocs(q);
         const events = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        console.log("Fetched Events: ", events); // Log fetched events
+
         setUserEvents(events);
 
-        // Filter events for today
-        const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        const todayEvents = events.filter(event => event.date === today);
-        setFilteredEvents(todayEvents);
+        // // Filter events for today
+        // const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        // const todayEvents = events.filter(event => {
+        //   const eventDate = event.date?.toDate ? event.date.toDate().toISOString().split('T')[0] : event.date;
+        //   return eventDate === today;
+        // });
+//         const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+//         console.log(today)
+
+// const todayEvents = events.filter(event => {
+//   // If event.date is a Firestore Timestamp, convert it to a Date object
+//   let eventDate = event.date;
+//   if (event.date?.toDate) {
+//     eventDate = event.date.toDate().toISOString().split('T')[0];
+//   } else if (typeof eventDate === 'string') {
+//     eventDate = eventDate.split('T')[0]; // Ensure it's in YYYY-MM-DD format
+//   }
+  
+//   return eventDate === today;
+// });
+
+        
+
+        console.log("Filtered Events: ",events); // Log filtered events
+
+        setFilteredEvents(events);
       } catch (error) {
         Alert.alert('Error', 'Failed to fetch events');
         console.error('Error fetching events: ', error);
@@ -114,7 +139,6 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     marginBottom: 110,
-    
     position: 'relative',
   },
   greeting: {
@@ -141,7 +165,7 @@ const styles = StyleSheet.create({
     top: 100,
   },
   icon: {
-    width: 70, // Increased icon size
+    width: 70,
     height: 70,
     borderRadius: 35,
     marginRight: 39,
