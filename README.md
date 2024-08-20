@@ -204,37 +204,6 @@ markdown
 - Assisted in finding templates for the frontend using Figma.
 - Helped in debugging and resolving errors during implementation to ensure smooth functionality.
 
-# Greeshma
-
-### Music Feature Development:
-- Developed the Music Feature and designed it to enhance user engagement by allowing users to listen to music directly from the platform.
-- Integrated audio playback capabilities within the app, providing users with a seamless and immersive experience.
-
-### Content Integration:
-- Carefully selected and curated content, including images and songs, corresponding to various music categories.
-- Ensured that the content aligns with the platform’s aesthetic and user preferences.
-
-### User Experience:
-- Optimized the layout and functionality to ensure that users can navigate and interact with the music player effortlessly.
-
-### Sidebar Development:
-
-#### Dashboard Integration:
-- Designed and integrated a Sidebar within the app’s dashboard, providing users with quick access to key sections such as Settings, Feedback, Ratings, and Policies.
-- Ensured that the sidebar is visually cohesive with the overall app design, enhancing the user interface and experience.
-
-#### Interactive Elements:
-- Implemented onPress events for each option within the sidebar, making it highly interactive and responsive.
-- Enhanced the user experience by enabling smooth transitions and interactions within the sidebar, allowing users to easily navigate to different sections of the app.
-
-### Enhancements to Self-Assessment Feature:
-
-#### Navigation:
-- Contributed to the Self-Assessment Feature by working on creating an intuitive flow that guides users through the self-assessment process without confusion or interruption.
-
-#### Event Handling:
-- Managed onPress events for various elements within the self-assessment feature, ensuring that user inputs are handled efficiently and effectively.
-
 # P. Snehitha
 
 ### Self-Assessment Feature Development:
@@ -266,4 +235,35 @@ markdown
 ### Documentation:
 - Created comprehensive documentation, including a detailed README file that explains each feature of the app. This documentation serves as a guide for both developers and users, detailing the purpose and functionality of each component.
 - The documentation was meticulously detailed, covering every aspect of the app from the user interface to backend processes, ensuring that anyone working on or using the app can understand its structure and operation.
+
+# Greeshma
+
+### Music Feature Development:
+- Developed the Music Feature and designed it to enhance user engagement by allowing users to listen to music directly from the platform.
+- Integrated audio playback capabilities within the app, providing users with a seamless and immersive experience.
+
+### Content Integration:
+- Carefully selected and curated content, including images and songs, corresponding to various music categories.
+- Ensured that the content aligns with the platform’s aesthetic and user preferences.
+
+### User Experience:
+- Optimized the layout and functionality to ensure that users can navigate and interact with the music player effortlessly.
+
+### Sidebar Development:
+
+#### Dashboard Integration:
+- Designed and integrated a Sidebar within the app’s dashboard, providing users with quick access to key sections such as Settings, Feedback, Ratings, and Policies.
+- Ensured that the sidebar is visually cohesive with the overall app design, enhancing the user interface and experience.
+
+#### Interactive Elements:
+- Implemented onPress events for each option within the sidebar, making it highly interactive and responsive.
+- Enhanced the user experience by enabling smooth transitions and interactions within the sidebar, allowing users to easily navigate to different sections of the app.
+
+### Enhancements to Self-Assessment Feature:
+
+#### Navigation:
+- Contributed to the Self-Assessment Feature by working on creating an intuitive flow that guides users through the self-assessment process without confusion or interruption.
+
+#### Event Handling:
+- Managed onPress events for various elements within the self-assessment feature, ensuring that user inputs are handled efficiently and effectively.
 
