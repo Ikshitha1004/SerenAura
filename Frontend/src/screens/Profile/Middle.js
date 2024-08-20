@@ -19,7 +19,7 @@ const Middle = () => {
           const userDocSnap = await getDoc(userDocRef);
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-            setUserName(userData.fullName || user.displayName || "Unknown");
+            setUserName(userData.userName || user.displayName || "Unknown");
             setUserEmail(userData.email || user.email || "No email");
             setUserAvatar(userData.avatar || null);
             console.log(userData.avatar);

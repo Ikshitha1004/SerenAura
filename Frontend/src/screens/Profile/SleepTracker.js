@@ -45,6 +45,14 @@ const SleepTracker = () => {
     setNewSleepHours('');
   };
 
+  // Format the dates for the chart's x-axis
+  const formatDatesForChart = (dates) => {
+    return dates.map(date => {
+      const day = new Date(date);
+      return `Day ${dates.indexOf(date) + 1}`;
+    });
+  };
+
   return (
     <>
       <DateRow dates={sleepData.dates} handleDatePress={handleDatePress} />
@@ -53,7 +61,7 @@ const SleepTracker = () => {
         <View style={styles.circleContainer}>
           <View style={styles.circle}>
             <Text style={styles.circleText}>{sleepData.selectedDaySleep}h</Text>
-            <Text style={styles.circleSubText}>Sleep on {sleepData.selectedDate}</Text>
+            <Text style={styles.circleSubText}>Sleep on {new Date(sleepData.selectedDate).toLocaleDateString()}</Text>
           </View>
         </View>
 
@@ -61,7 +69,7 @@ const SleepTracker = () => {
           <View style={styles.graphContainer}>
             <LineChart
               data={{
-                labels: sleepData.dates,
+                labels: formatDatesForChart(sleepData.dates),
                 datasets: [
                   {
                     data: sleepData.dailySleep,
