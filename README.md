@@ -202,6 +202,8 @@ markdown
 
 ### Prototypes in Figma:
 - Assisted in finding templates for the frontend using Figma.
+  
+### Debugging:
 - Helped in debugging and resolving errors during implementation to ensure smooth functionality.
 
 # P. Snehitha
