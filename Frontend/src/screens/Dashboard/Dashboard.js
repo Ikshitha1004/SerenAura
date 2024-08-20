@@ -75,18 +75,49 @@ const DashboardScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <MenuButton navigation={navigation} />
-        <Text style={styles.greeting}>Hello!</Text>
+        <Text style={styles.greeting}>Hello!Welcome  to Serenaura</Text>
 
         {/* Profile Icon */}
-        <Entypo name="user" size={30} color="#000" style={styles.profileIcon} />
+        <TouchableOpacity onPress={() => handleFooterPress("ProfileScreen")}>
+        <Entypo
+          name="user"
+          size={30}
+          color="#000"
+          style={styles.profileIcon}
+        />
+      </TouchableOpacity>
 
         {/* Scrollable Icon Container */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.iconScrollContainer}>
-          <Image source={require('../../assets/DashBoardIcons/Brain.png')} style={styles.icon} />
-          <Image source={require('../../assets/DashBoardIcons/Flower.png')} style={styles.icon} />
-          <Image source={require('../../assets/DashBoardIcons/Journal.png')} style={styles.icon} />
-          <Image source={require('../../assets/DashBoardIcons/Music.png')} style={styles.icon} />
-        </ScrollView>
+        <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.iconScrollContainer}
+      >
+        <TouchableOpacity onPress={() => handleFooterPress("MoodTracker")}>
+          <Image
+            source={require('../../assets/DashBoardIcons/Brain.png')}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress("Grounding Techniques")}>
+          <Image
+            source={require('../../assets/DashBoardIcons/Flower.png')}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress("JournalList")}>
+          <Image
+            source={require('../../assets/DashBoardIcons/Journal.png')}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress("MusicHome")}>
+          <Image
+            source={require('../../assets/DashBoardIcons/Music.png')}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </ScrollView>
       </View>
 
       <Text style={styles.taskTitle}>Today's Tasks</Text>
@@ -101,9 +132,9 @@ const DashboardScreen = ({ navigation }) => {
               <View style={styles.eventTextContainer}>
                 <Text style={styles.eventTitle}>{event.title}</Text>
                 <Text style={styles.eventDescription}>{event.description}</Text>
-                <TouchableOpacity style={styles.joinButton} onPress={() => navigation.navigate('EventDetail', { eventId: event.id })}>
+                {/* <TouchableOpacity style={styles.joinButton} onPress={() => navigation.navigate('EventDetail', { eventId: event.id })}>
                   <Text style={styles.joinButtonText}>Join Now</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           ))
@@ -113,17 +144,17 @@ const DashboardScreen = ({ navigation }) => {
       </ScrollView>
 
       <View style={styles.footerIconsContainer}>
-        <TouchableOpacity onPress={() => handleFooterPress('Community')}>
+        <TouchableOpacity onPress={() => handleFooterPress("Dashboard")}>
           <Entypo name="home" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress("Community")}>
+          <Entypo name="users" size={30} color="#000" style={styles.footerIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleFooterPress("GratitudeJarScreen")}>
+          <FontAwesome6 name="jar" size={30} color="#000" style={styles.footerIcon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleFooterPress('Settings')}>
           <Entypo name="cog" size={30} color="#000" style={styles.footerIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleFooterPress('GratitudeJar')}>
-          <FontAwesome6 name="jar" size={30} color="#000" style={styles.footerIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleFooterPress('Users')}>
-          <Entypo name="users" size={30} color="#000" style={styles.footerIcon} />
         </TouchableOpacity>
       </View>
     </View>
@@ -148,9 +179,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   profileIcon: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
+   left:"45%",
+    right:30,
+    top:"-350%"
   },
   menuIcon: {
     position: 'absolute',

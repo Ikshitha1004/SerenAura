@@ -44,7 +44,7 @@ console.log(userAvatar);
         {userAvatar ? (
           <Image source={{ uri: userAvatar }} style={styles.image} />
         ) : (
-           <Image source={require("../../assets/favicon.png")} style={styles.image} />
+           <Image source={require("../../assets/avatars/p3.png")} style={styles.image} />
         )}
         <Text style={styles.userName}>{userName}</Text>
         <Text style={styles.userEmail}>{userEmail}</Text>

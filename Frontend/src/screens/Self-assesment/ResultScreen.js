@@ -20,6 +20,12 @@ export default function ResultScreen({ route, navigation }) {
       >
         <Text style={styles.buttonText}>Retake Assessment</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Dashboard")}
+      >
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
     </View>
   );
 }

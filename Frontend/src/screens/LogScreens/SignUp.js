@@ -61,30 +61,48 @@ const SignUp = () => {
       ToastAndroid.show("Please fill all the fields", ToastAndroid.BOTTOM);
       return;
     }
+  
+    if (password.length < 6) {
+      ToastAndroid.show("Password must be at least 6 characters long", ToastAndroid.BOTTOM);
+      return;
+    }
+  
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-
+  
         // Update the displayName (username) immediately after account creation
         await updateProfile(user, {
           displayName: fullName,
         });
-
+  
         // Store the user's name in Firestore
         await setDoc(doc(db, "users", user.uid), {
           displayName: fullName,
           email: user.email,
           uid: user.uid,
         });
-
+  
         console.log("User registered and profile updated.");
+        navigation.navigate("AvatarSelection");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+  
+        if (errorCode === 'auth/email-already-in-use') {
+          ToastAndroid.show("This email is already registered. Please try logging in.", ToastAndroid.BOTTOM);
+        } else if (errorCode === 'auth/invalid-email') {
+          ToastAndroid.show("Please enter a valid email address.", ToastAndroid.BOTTOM);
+        } else if (errorCode === 'auth/weak-password') {
+          ToastAndroid.show("Password is too weak. Please choose a stronger password.", ToastAndroid.BOTTOM);
+        } else {
+          ToastAndroid.show(errorMessage, ToastAndroid.BOTTOM);
+        }
         console.log(errorCode, errorMessage);
       });
   };
+  
 
   return (
     <View style={styles.container}>

@@ -31,7 +31,7 @@ const Sidebar = (props) => {
             <Ionicons name="settings-sharp" size={size} color="#000000" />
           )}
           labelStyle={styles.labelStyle}
-          onPress={() => {}}
+          onPress={() => {navigation.navigate("Settings")}}
           style={styles.drawerItem}
         />
         <DrawerItem

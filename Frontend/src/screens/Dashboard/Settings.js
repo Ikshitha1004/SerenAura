@@ -75,10 +75,10 @@ const SettingsScreen = () => {
             style={styles.editIconContainer}
             onPress={() => setIsEditingUsername(true)}
           >
-            <Image
+            {/* <Image
               style={styles.editIcon}
               source={require("../../assets/edit-icon.png")}
-            />
+            /> */}
             <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
         </View>

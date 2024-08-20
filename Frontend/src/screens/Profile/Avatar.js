@@ -45,6 +45,7 @@ const AvatarSelection = () => {
             setSelectedAvatar(userData.avatar);
           }
         }
+        navigator.navigate("Welcome");
       } catch (error) {
         Alert.alert("Error", "Failed to fetch user avatar");
         console.error("Error fetching user avatar: ", error);

@@ -1,15 +1,46 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Card from '../../components/Card';
+import { useNavigation } from '@react-navigation/native';
 
 const Bottom = () => {
+  const navigation = useNavigation();
+
+  const handlePress = (screenName) => {
+    navigation.navigate(screenName);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.row}>
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Progress" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Sleep" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Self-assess" size={60} />
-        <Card icon={require('../../assets/Profileicons/Flower.png')} description="Reward" size={60} />
+        <TouchableOpacity onPress={() => handlePress("Progress")}>
+          <Card 
+            icon={require('../../assets/Profileicons/Progress.png')} 
+            description="Progress" 
+            size={60}  
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("SleepTracker")}>
+          <Card 
+            icon={require('../../assets/Profileicons/Sleep.png')} 
+            description="Sleep" 
+            size={60}  
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("Welcome")}>
+          <Card 
+            icon={require('../../assets/Profileicons/Self-assess.png')} 
+            description="Self-assess" 
+            size={60}  
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress("MoodTracker")}>
+          <Card 
+            icon={require('../../assets/Profileicons/Mood.png')} 
+            description="Mood" 
+            size={60}  
+          />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

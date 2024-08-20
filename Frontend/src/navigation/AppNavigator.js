@@ -167,6 +167,7 @@ import NotesScreen from "../screens/GratitudeJarScreens/NotesScreen";
 import GroundingTechniquesScreen from "../screens/GroundingTechniquesScreens/GroundingTechniquesScreen";
 import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
 import JournalListScreen from "../screens/JournalScreens/JournalListScreen";
+import SettingsScreen from "../screens/Dashboard/Settings";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -225,9 +226,15 @@ const AppNavigator = () => {
           component={ResultScreen}
           options={{ title: "Result" }}
         />
-        <Stack.Screen name="Home" component={MusicHomeScreen} />
-        <Stack.Screen name="Songs" component={SongListScreen} />
-        <Stack.Screen name="Player" component={PlayerScreen} />
+        <Stack.Screen 
+          name="MusicHome" 
+          component={MusicHomeScreen} />
+        <Stack.Screen 
+          name="Songs" 
+          component={SongListScreen} />
+        <Stack.Screen 
+          name="Player" 
+          component={PlayerScreen} />
         <Stack.Screen
           name="Community"
           component={CommunityScreen}
@@ -287,7 +294,11 @@ const AppNavigator = () => {
           name="Grounding Techniques"
           component={GroundingTechniquesScreen}
         />
-
+         <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ title: "Settings" }}
+        />
         <Stack.Screen
           name="ProfileScreen"
           component={ProfileScreen}
