@@ -241,6 +241,7 @@ const CalendarScreen = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -255,11 +256,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: "Poppins_700Bold",
     color: "#FC6C85",
-    marginTop: 8,
-  },
-  calendar: {
-    width: "100%",
-    marginBottom: 20,
   },
   dayContainer: {
     justifyContent: "center",
@@ -309,7 +305,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 10,
     color: "black",
-    textShadowColor: "black",
   },
 });
 
