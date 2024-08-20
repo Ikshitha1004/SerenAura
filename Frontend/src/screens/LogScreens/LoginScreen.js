@@ -99,7 +99,7 @@ const Login = () => {
           />
           <TextInput
             style={styles.inputText}
-            placeholder="email"
+            placeholder="Email"
             onChangeText={(value) => setEmail(value)}
           />
         </View>
@@ -111,7 +111,7 @@ const Login = () => {
           />
           <TextInput
             style={styles.inputText}
-            placeholder="password"
+            placeholder="Password"
             secureTextEntry={secureTextEntry}
             onChangeText={(value) => setPassword(value)}
           />
@@ -142,17 +142,17 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#967bb6",
+    backgroundColor: "#FAF3E0",
     paddingHorizontal: "10%",
     paddingVertical: "15%",
   },
   logInNow: {
     fontSize: 24,
-    fontWeight: "700",
+    fontWeight: "bold",
     fontFamily: "Poppins_700Bold",
-    color: "#FFFFFF",
+    color: "#000000",
     textAlign: "center",
-    marginBottom: 30,
+    marginBottom: "40%",
   },
   inputContainer: {
     marginBottom: 30,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   logInButton: {
-    backgroundColor: "lavender",
+    backgroundColor: "#FF6951",
     borderRadius: 32,
     paddingVertical: 15,
     alignItems: "center",

@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 const AboutUsScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>About Us</Text>
+      <Text style={styles.title}>About Us:</Text>
       <Text style={styles.content}>
         Our app is designed to promote mental wellness by providing users with
         tools and resources to better understand and manage their emotional
@@ -26,16 +26,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "white",
+    backgroundColor: "#EEEEEE",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
+    
   },
   content: {
+    marginTop:"30%",
     fontSize: 16,
-    lineHeight: 24,
+    lineHeight: 35,
+    left:"2%",
+    color:"#4a4a4a",
   },
 });
 

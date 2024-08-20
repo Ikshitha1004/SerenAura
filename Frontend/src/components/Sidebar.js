@@ -20,7 +20,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: "#B2A4C6" }]}>
+    <View style={[styles.container, { backgroundColor: "#D598E5" }]}>
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={styles.content}

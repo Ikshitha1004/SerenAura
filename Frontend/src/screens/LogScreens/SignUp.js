@@ -171,7 +171,7 @@ const SignUp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#967bb6",
+    backgroundColor: "#FAF3E0",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
@@ -180,14 +180,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     fontFamily: "Poppins_700Bold",
-    color: "lavender",
+    color: "#000000",
     textAlign: "center",
     marginBottom: 40,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "lavender",
+    backgroundColor: "#FFF",
     borderRadius: 32,
     width: "100%",
     padding: 15,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     width: 20,
   },
   signUpButton: {
-    backgroundColor: "lavender",
+    backgroundColor: "#FF6951",
     borderRadius: 32,
     paddingVertical: 15,
     paddingHorizontal: 50,

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#eeeeee",
     padding: 20,
   },
   title: {
@@ -66,13 +66,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   submitButton: {
-    backgroundColor: "#007BFF",
+    backgroundColor: "#fc6c85",
     padding: 10,
     borderRadius: 5,
+    width:"40%",
   },
   submitText: {
-    color: "white",
+    color: "#000000",
     fontSize: 18,
+    left:30,
   },
 });
 
