@@ -3,15 +3,17 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
+  
   const navigation = useNavigation();
-
+  
   const handleLogin = () => {
     navigation.navigate("Login");
   };
-
+  
   const handleSignup = () => {
     navigation.navigate("SignUp");
   };
+  
 
   return (
     <View style={styles.container}>

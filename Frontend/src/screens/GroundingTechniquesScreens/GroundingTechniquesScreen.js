@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import GroundingTechniqueCard from '../components/GroundingTechniqueCard';
-import groundingTechniques from '../data/groundingTechniques';
+import GroundingTechniqueCard from '../../components/GroundingTechniqueCard';
+import groundingTechniques from '../../data/groundingTechniques';
 
 const GroundingTechniquesScreen = () => {
   const [technique, setTechnique] = useState(null);
