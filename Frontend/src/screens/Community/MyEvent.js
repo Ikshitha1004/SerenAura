@@ -47,24 +47,25 @@ const styles = StyleSheet.create({
   eventTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#000000',
   },
   eventDescription: {
     fontSize: 14,
-    color: '#666',
+    color: '#1c1c1c',
     marginVertical: 5,
   },
   eventDate: {
     fontSize: 12,
-    color: '#999',
+    color: '#4d4d4d',
   },
   eventLocation: {
     fontSize: 12,
-    color: '#999',
+    color: '#4d4d4d',
   },
   noEvents: {
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: "70%",
   },
 });
 

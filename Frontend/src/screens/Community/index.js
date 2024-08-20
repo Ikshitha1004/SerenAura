@@ -88,7 +88,7 @@ const CommunityScreen = () => {
         <View style={styles.locationContainer}>
           {userLocation && userLocation.placeName ? (
             <>
-              <MaterialIcons name="location-on" size={24} color="pink" />
+              <MaterialIcons name="location-on" size={24} color="#EA2157" />
               <Text style={styles.location}>{userLocation.placeName}</Text>
             </>
           ) : (
@@ -96,7 +96,7 @@ const CommunityScreen = () => {
           )}
         </View>
         <TouchableOpacity style={styles.profileIcon}>
-          <Entypo name="user" size={24} color="pink" />
+          <Entypo name="user" size={24} color="#EA2157" />
         </TouchableOpacity>
       </View>
 
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor: '#eeeeee',
   },
   header: {
     flexDirection: 'row',
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   profileIcon: {
     padding: 10,
     borderRadius: 20,
-    backgroundColor: '#ddd',
+    backgroundColor: '#eeeeee',
   },
   eventsContainer: {
     flex: 1,
@@ -169,31 +170,35 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   eventTitle: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   eventDescription: {
     fontSize: 14,
-    color: '#666',
+    color: '#1c1c1c',
     marginVertical: 5,
   },
   eventDate: {
     fontSize: 12,
-    color: '#999',
+    color: '#4d4d4d',
   },
   eventLocation: {
     fontSize: 12,
-    color: '#999',
+    color: '#4d4d4d',
   },
   joinButton: {
-    backgroundColor: '#4CAF50',
-    padding: 10,
+    backgroundColor: '#CED4FA',
+    padding: 5, 
     borderRadius: 5,
     alignItems: 'center',
+    width: '40%', 
+    left: "55%", 
     marginTop: 10,
-  },
+},
+
+  
   joinButtonText: {
-    color: '#fff',
+    color: '#000000',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -209,8 +214,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   addButton: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
+    backgroundColor: '#FE558C',
+    padding: 13,
     borderRadius: 10,
     alignItems: 'center',
     flex: 1,
@@ -222,8 +227,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   myEventsButton: {
-    backgroundColor: '#2196F3',
-    padding: 15,
+    backgroundColor: '#FE558C',
+    padding: 13,
     borderRadius: 10,
     alignItems: 'center',
     flex: 1,

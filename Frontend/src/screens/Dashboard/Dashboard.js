@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } fr
 import { Entypo, FontAwesome6 } from '@expo/vector-icons'; // Importing FontAwesome and Entypo icons from Expo Vector Icons
 import { db } from '../../configs/firebaseConfig'; // Adjust the path as needed
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import MenuButton from '../../components/MenuButton';
 
 const DashboardScreen = ({ navigation }) => {
   const [userEvents, setUserEvents] = useState([]);
@@ -48,8 +49,8 @@ const DashboardScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Entypo name="menu" size={40} color="#000" style={styles.menuIcon}/>
-        <Text style={styles.greeting}>Hello, Sheenu</Text>
+        <MenuButton navigation={navigation} />
+        <Text style={styles.greeting}>Hello!</Text>
 
         {/* Profile Icon */}
         <Entypo name="user" size={30} color="#000" style={styles.profileIcon} />
@@ -107,19 +108,20 @@ const DashboardScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    padding: 20,
+    backgroundColor: '#FFF',
+    padding: 15,
   },
   header: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 110,
+    
     position: 'relative',
   },
   greeting: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    marginTop: 10,
+    marginTop: 30,
   },
   profileIcon: {
     position: 'absolute',
@@ -134,17 +136,21 @@ const styles = StyleSheet.create({
   iconScrollContainer: {
     flexDirection: 'row',
     marginBottom: 20,
+    position: 'absolute',
+    right: 40,
+    top: 100,
   },
   icon: {
     width: 70, // Increased icon size
     height: 70,
     borderRadius: 35,
-    marginRight: 15,
+    marginRight: 39,
+    left: 50,
   },
   taskTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: 100,
     alignSelf: 'flex-start',
   },
   eventContainer: {

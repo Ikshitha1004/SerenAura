@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput, Button } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import DateRow from './DateRow'; // Import the DateRow component
+import DateRow from './Daterow'; // Import the DateRow component
 
 const SleepTracker = () => {
   // Generate the last 10 days

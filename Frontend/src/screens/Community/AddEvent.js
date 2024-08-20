@@ -101,23 +101,26 @@ const AddEventScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
   },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
+    
+    
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#333',
+    marginBottom: "30%",
+    
+    color: '#000000',
+    left:"25%",
   },
   input: {
     height: 60,
-    borderColor: '#ccc',
+    borderColor: '#000000',
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 15,
@@ -125,12 +128,15 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: '#fff',
     fontSize: 16,
+    backgroundColor: '#e6e6fa',
   },
   saveButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#FE558C',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
+    width:"40%",
+    left:"60%",
   },
   saveButtonText: {
     color: '#fff',
