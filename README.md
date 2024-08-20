@@ -16,16 +16,34 @@ ___
 ### **SDG Goal:**
 In India, about 150 million people struggle with mental health issues, but fewer than 10% get professional help due to a lack of awareness and access to mental health services. Many people also face social stigma, feeling judged for seeking therapy or unsure of where to turn for support. Our app, **SerenAura**, makes taking care of your mental health easier and less intimidating. With features like personalized self-assessment, support groups (community), a sleep and mood tracker, grounding techniques, and a progress tracker, SerenAura makes mental health support accessible and engaging, all while eliminating the fear of judgment.
 
+<div>
+<img src="https://github.com/user-attachments/assets/2d73da65-6934-4cfc-9472-a87cecb017a1" width="200" />
+<img src="https://github.com/user-attachments/assets/6e2e3190-059f-4cd4-a078-ced211b9bd28" width="200" />
+
+</div>
+
 ## Features
 
 ### **Gratitude Jar**
 The Gratitude Jar feature in our app is a thoughtful and meaningful tool designed to foster positivity and mental well-being. It allows users to capture and save moments of gratitude, which could include positive experiences, cherished memories, and even photos that hold sentimental value. This feature serves as a personal repository of happiness, where users can record and revisit these entries whenever they need a boost in their mood. When users feel stressed, anxious, or overwhelmed, they can open the Gratitude Jar and scroll through their collection of positive moments. This practice can help shift their focus away from negative emotions and remind them of the good things in their lives.
 
+ <img src="https://github.com/user-attachments/assets/c08d179e-6c71-4c64-9d6c-86516a9dec0a" width="200" />
+
+
 ### **Self-Assessment**
 The self-assessment feature in our app allows users to check their mental wellness by answering 20 carefully designed questions. These questions assess various aspects of the users' mental state, helping to provide insights into their current emotional and psychological well-being. The scoring system is set up so that a higher score indicates a higher level of depression. This structure allows users to get a clear picture of where they stand on the mental wellness spectrum. By quantifying their emotional state, users can track changes over time, identify patterns, and potentially recognize when it might be necessary to seek professional help or make lifestyle changes.
 
+<div>
+  <img src="https://github.com/user-attachments/assets/41cfdc20-7499-49b2-a5fd-4a3489f82471" width="200" />
+  <img src="https://github.com/user-attachments/assets/d2998efe-af15-4654-aa6a-3c51d313caae" width="200" />
+  <img src="https://github.com/user-attachments/assets/b630c094-eeee-447b-bc6c-a01b67566189" width="200" />
+</div>
+
 ### **Community**
 The community interaction feature in our app adds a valuable layer of social support, which is crucial for mental wellness. By allowing users to connect with others who have similar experiences, users can attend offline events around them or even host events themselves. These gatherings provide a platform for sharing personal journeys, exchanging support, and building meaningful relationships.
+
+<img src="https://github.com/user-attachments/assets/8c3f675d-34a0-4219-89db-d14d8c87a2fe" width="200" />
+
 
 ### **Music**
 The music feature in our app is designed to be a soothing escape for users, offering a selection of peaceful and mind-calming tracks. This feature enhances mental well-being by helping users manage stress, anxiety, and other emotional challenges through the therapeutic power of music. Additionally, the app's music library includes a variety of genres such as peace, meditation, deep sleep, and nature, allowing users to choose what resonates most with their current mood. This personalized experience ensures that users can find the perfect auditory backdrop to support their mental wellness journey.
@@ -38,8 +56,13 @@ The Progress Tracker feature in our app offers users a visual representation of 
 
 - **Mood Tracker:** This feature provides three emojis, each representing a different mood—perhaps a happy, neutral, and sad face. Users can select the emoji that best reflects their mood for the day. Over time, this can help users identify patterns in their emotional state and understand how their mood fluctuates.
 
+<img src="https://github.com/user-attachments/assets/a6aac642-2ba6-482c-92ad-e4cad423aea4" width="200" />
+
 ### **Grounding Techniques**
 The Grounding Techniques feature in our app is designed to offer users immediate tools to manage anxiety and distress by helping them refocus on the present moment. When users click on the Grounding Techniques option, the app randomly selects a technique from a list that includes methods like the 5-4-3-2-1 method, breathing exercises, and sound awareness techniques. This randomness adds an element of surprise and can keep the experience fresh, preventing users from becoming too accustomed to one particular method. Each technique is crafted to help users create mental space from distressing feelings and bring their attention back to the present, making these exercises particularly effective in moments of high stress or anxiety. The variety of techniques ensures that users can find a method that works best for them in different situations.
+
+<img src="https://github.com/user-attachments/assets/205055ac-4e33-42d3-adc7-bdf182553f89" width="200" />
+
 
 ### **Journaling**
 The Journaling feature in our app offers users a dedicated space to reflect on their thoughts and experiences.
@@ -49,6 +72,11 @@ The Journaling feature in our app offers users a dedicated space to reflect on t
 - **Add New Journal:** Users can create a new journal entry by providing a title and a description. In the description, they can write about how they feel, their daily routines, or any other thoughts they wish to capture. This flexible approach to journaling allows users to express themselves freely, whether they want to explore their emotions, document their day, or reflect on their mental wellness journey.
 
 Journaling is a powerful tool for self-expression and emotional processing, and this feature in our app encourages regular practice, which can be a key component of maintaining mental well-being.
+<div>
+ <img src="https://github.com/user-attachments/assets/26120c3d-bce4-4012-9178-271524565acb" width="200" />
+
+<img src="https://github.com/user-attachments/assets/35f2c92c-2565-4691-b0e8-f04c2cb5fe67" width="200" />
+</div>
 markdown
 # Ikshitha
 
