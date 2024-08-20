@@ -33,17 +33,6 @@ const DrawerNavigator = () => (
   </Drawer.Navigator>
 );
 
-
-const AppNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ title: "Login" }}
-        />
-        <Stack.Screen
           name="Main"
           component={DrawerNavigator}
           options={{ headerShown: false }} // Hide header for the Drawer Navigator
@@ -98,6 +87,41 @@ const AppNavigator = () => {
           name="HomeScreen"
           component={HomeScreen}
           options={{ title: "Home" }}
+
+          name="JournalEntry"
+          component={JournalEntryScreen}
+          options={{ title: "New Entry" }}
+        />
+        <Stack.Screen
+          name="JournalList"
+          component={JournalListScreen}
+          options={{ title: "Your Journal" }}
+        />
+        <Stack.Screen
+          name="Calendar"
+          component={CalendarScreen}
+          options={{ title: "calandar" }}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ title: "Welcome" }}
+        />
+        <Stack.Screen
+          name="Result"
+          component={ResultScreen}
+          options={{ title: "Result" }}
+        />
+        <Stack.Screen
+          name="Question"
+          component={QuestionScreen}
+          options={{ title: "Question" }}
+        />
+        <Stack.Screen
+          name="PT"
+          component={ProgressTrack}
+          options={{ title: "PT" }}
+
         />
       </Stack.Navigator>
     </NavigationContainer>
