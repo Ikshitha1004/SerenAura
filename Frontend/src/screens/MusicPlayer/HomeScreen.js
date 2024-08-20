@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"; 
+import { FontAwesome } from "@expo/vector-icons"; // For music icon
 
 const HomeScreen = ({ navigation }) => {
   const categories = [
@@ -35,28 +35,28 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black", 
+    backgroundColor: "#eeeeee",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 50,
   },
+
   quoteContainer: {
-    backgroundColor: "#f0e68c", 
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
+     // Light khaki background color
+    
+    marginBottom: "10%",
+    marginTop: "5%", // Adjust this value to move the quote up
     maxWidth: "90%",
   },
   quote: {
-    color: "#333",
-    fontSize: 18,
+    color: "#FF2C7A",
+    fontSize: 25,
     fontStyle: "italic",
     textAlign: "center",
   },
   title: {
-    color: "#fff",
+    color: "#333",
     fontSize: 24,
-    marginBottom: 30,
+    marginBottom: "20%",
   },
   categoriesContainer: {
     flexDirection: "row",
@@ -64,13 +64,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   categoryButton: {
-    width: 100,
-    height: 100,
-    borderRadius: 50, 
-    backgroundColor: "#4CAF50",
+    width: "40%",
+    height: "30%",
+    borderRadius: 50, // Makes the button round
+    backgroundColor: "#FC6C85",
     justifyContent: "center",
     alignItems: "center",
-    margin: 15,
+    margin: 12,
+    marginTop:"5%",
   },
   categoryText: {
     color: "#fff",
