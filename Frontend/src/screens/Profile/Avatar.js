@@ -10,6 +10,7 @@ import {
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig"; // Update path as needed
+import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 
 const avatars = [
   require("../../assets/avatars/p1.png"),
@@ -24,6 +25,7 @@ const avatars = [
 
 const AvatarSelection = () => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const navigation = useNavigation(); // Initialize navigation
 
   useEffect(() => {
     const fetchUserAvatar = async () => {
@@ -45,7 +47,6 @@ const AvatarSelection = () => {
             setSelectedAvatar(userData.avatar);
           }
         }
-        navigator.navigate("Welcome");
       } catch (error) {
         Alert.alert("Error", "Failed to fetch user avatar");
         console.error("Error fetching user avatar: ", error);
@@ -72,9 +73,19 @@ const AvatarSelection = () => {
       await setDoc(userDocRef, { avatar: avatarUri }, { merge: true });
 
       setSelectedAvatar(avatarUri);
-      Alert.alert("Success", "Avatar saved successfully");
+      Alert.alert("Success", "Avatar saved successfully", [
+        {
+          text: "OK",
+          onPress: () => navigation.navigate("Welcome"), // Navigate to Welcome screen
+        },
+      ]);
     } catch (error) {
-      Alert.alert("Error", "Failed to save avatar");
+      Alert.alert("Error", "Failed to save avatar", [
+        {
+          text: "OK",
+          onPress: () => navigation.navigate("Welcome"), // Navigate even if there's an error
+        },
+      ]);
       console.error("Error saving avatar: ", error);
     }
   };

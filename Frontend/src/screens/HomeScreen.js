@@ -17,15 +17,13 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/splash.png")} style={styles.logo} />
       <Image
-        source={require("../assets/splash.png")}
+        source={require("../assets/logof.png")}
         style={styles.bannerImage}
       />
-      <Text style={styles.title}>Lorem ipsum dolor.</Text>
+      <Text style={styles.title}>Your companion for calmness</Text>
       <Text style={styles.subTitle}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore
+       Come home to SerenAura!Take easier steps to wellness
       </Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     width: 231,
   },
   title: {
-    fontSize: 40,
+    fontSize: 25,
     paddingHorizontal: 20,
     textAlign: "center",
     marginTop: 40,
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    backgroundColor: "pink",
     paddingVertical: 15,
     borderRadius: 30,
     marginHorizontal: 5, // Add margin between buttons
