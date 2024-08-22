@@ -49,7 +49,7 @@
 //           name="SleepDataInput"
 //           component={SleepDataInputScreen}
 //           options={{ title: "Calendar" }}
-//         /> 
+//         />
 
 //          {/* <Stack.Screen
 //           name="SleepTracker"
@@ -168,7 +168,7 @@ import GroundingTechniquesScreen from "../screens/GroundingTechniquesScreens/Gro
 import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
 import JournalListScreen from "../screens/JournalScreens/JournalListScreen";
 import SettingsScreen from "../screens/Dashboard/Settings";
-
+import Entry from "../screens/LogScreens/Entry";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -185,7 +185,7 @@ const DrawerNavigator = () => (
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
@@ -194,6 +194,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
+          options={{ title: " W" }}
+        />
+        <Stack.Screen
+          name="Entry"
+          component={Entry}
           options={{ title: "Sign Up" }}
         />
         <Stack.Screen
@@ -226,15 +231,9 @@ const AppNavigator = () => {
           component={ResultScreen}
           options={{ title: "Result" }}
         />
-        <Stack.Screen 
-          name="MusicHome" 
-          component={MusicHomeScreen} />
-        <Stack.Screen 
-          name="Songs" 
-          component={SongListScreen} />
-        <Stack.Screen 
-          name="Player" 
-          component={PlayerScreen} />
+        <Stack.Screen name="MusicHome" component={MusicHomeScreen} />
+        <Stack.Screen name="Songs" component={SongListScreen} />
+        <Stack.Screen name="Player" component={PlayerScreen} />
         <Stack.Screen
           name="Community"
           component={CommunityScreen}
@@ -294,7 +293,7 @@ const AppNavigator = () => {
           name="Grounding Techniques"
           component={GroundingTechniquesScreen}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Settings"
           component={SettingsScreen}
           options={{ title: "Settings" }}

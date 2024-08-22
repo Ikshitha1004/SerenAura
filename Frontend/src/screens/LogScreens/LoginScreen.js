@@ -5,7 +5,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ToastAndroid, // Ensure ToastAndroid is imported
+  ToastAndroid,
+  Alert,
 } from "react-native";
 import { Image } from "expo-image";
 import {
@@ -18,10 +19,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
 import { auth } from "../../configs/firebaseConfig";
-import { Alert } from "react-native";
-// Prevent the splash screen from auto-hiding
-SplashScreen.preventAutoHideAsync();
 import { useNavigation } from "@react-navigation/native";
+
+SplashScreen.preventAutoHideAsync();
+
 const Login = () => {
   const router = useRouter();
   const navigation = useNavigation();
@@ -29,7 +30,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-  // Load fonts
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -38,7 +38,7 @@ const Login = () => {
 
   useEffect(() => {
     if (fontsLoaded) {
-      SplashScreen.hideAsync(); // Hide the splash screen once fonts are loaded
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
@@ -56,14 +56,10 @@ const Login = () => {
       );
       const user = userCredential.user;
       console.log("User signed in:", user);
-      // Navigate to the home screen
-      // router.push("/calendar");
       navigation.navigate("Dashboard");
-   
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("im");
       console.error("Error signing in:", errorMessage);
 
       if (
@@ -84,7 +80,7 @@ const Login = () => {
   };
 
   if (!fontsLoaded) {
-    return null; // Return null until fonts are loaded
+    return null;
   }
 
   return (
@@ -129,12 +125,12 @@ const Login = () => {
       <TouchableOpacity style={styles.logInButton} onPress={onSignIn}>
         <Text style={styles.logInText}>Log In</Text>
       </TouchableOpacity>
-      {/* <View style={styles.footer}>
+      <View style={styles.footer}>
         <Text style={styles.dontHaveAn}>Don’t have an account?</Text>
-        <Pressable onPress={() => navigation.navigate("IPhone1313Pro1")}>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={styles.signUp}>Sign Up</Text>
-        </Pressable>
-      </View> */}
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -206,12 +202,12 @@ const styles = StyleSheet.create({
   },
   dontHaveAn: {
     fontSize: 14,
-    color: "#FFFFFF",
+    color: "#1e1e1e",
     fontFamily: "Poppins_500Medium",
   },
   signUp: {
     fontSize: 14,
-    color: "#696969",
+    color: "#FF6951",
     fontFamily: "Poppins_400Regular",
     marginLeft: 5,
   },
