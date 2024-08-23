@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, ActivityIndicator,Dimensions } from 'react-native';
 import GroundingTechniqueCard from '../../components/GroundingTechniqueCard';
 import groundingTechniques from '../../data/groundingTechniques';
+const { width, height } = Dimensions.get("window");
+
 
 const GroundingTechniquesScreen = () => {
   const [technique, setTechnique] = useState(null);

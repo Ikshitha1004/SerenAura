@@ -1,6 +1,8 @@
-// screens/AboutUsScreen.js
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+// import React from "react";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
+
+// Get the screen dimensions
+const { width, height } = Dimensions.get("window");
 
 const AboutUsScreen = () => {
   return (
@@ -17,7 +19,6 @@ const AboutUsScreen = () => {
         encouraging users to take proactive steps toward a healthier, more
         balanced life.
       </Text>
-      {/* You can add more content here as needed */}
     </ScrollView>
   );
 };
@@ -25,21 +26,21 @@ const AboutUsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: width * 0.05, // 5% of screen width
+    paddingTop: height * 0.05, // 5% of screen height
     backgroundColor: "#EEEEEE",
   },
   title: {
-    fontSize: 24,
+    fontSize: width * 0.06, // 6% of screen width
     fontWeight: "bold",
-    marginBottom: 10,
-    
+    marginBottom: height * 0.02, // 2% of screen height
   },
   content: {
-    marginTop:"30%",
-    fontSize: 16,
-    lineHeight: 35,
-    left:"2%",
-    color:"#4a4a4a",
+    marginTop: height * 0.05, // 5% of screen height
+    fontSize: width * 0.035, // 4.5% of screen width
+    lineHeight: width * 0.07, // 7% of screen width
+    color: "#4a4a4a",
+    textAlign: "justify",
   },
 });
 

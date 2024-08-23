@@ -86,7 +86,7 @@ const GratJar = ({ navigation, route }) => {
     setFillPercent(0);
     setJarColor('#ffb6c1');
 
-    // Resets the fillPercent in Firestore
+    // Resetting the fillPercent in Firestore
     if (user) {
       try {
         await setDoc(
@@ -102,7 +102,6 @@ const GratJar = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      {/* Jar */}
       <Svg height="250" width="150" viewBox="0 0 150 250">
         {/*Cap*/}
         <Rect x="20" y="0" width="110" height="15" fill="#d2691e" rx="7" />
@@ -116,7 +115,6 @@ const GratJar = ({ navigation, route }) => {
           fill="transparent"
         />
 
-        {/* Jar Filling */}
         {fillPercent > 0 && (
           <Path
             d={`M 30 ${230 - currFillH} Q 20 55 20 55 L 20 200 Q 20 230 50 230 L 100 230 Q 130 230 130 200 L 130 ${230 - currFillH} Z`}
