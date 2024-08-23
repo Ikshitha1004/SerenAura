@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
-import { db } from '../../configs/firebaseConfig'; // Adjust the path as needed
+import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc } from 'firebase/firestore';
-
+/*Placeholder events */
 const CommunityScreen = () => {
   const [events, setEvents] = useState([
     { id: '1', title: 'Yoga Session', description: 'Morning yoga at the park', date: '2024-08-18', location: 'Tirupati', joined: false },
@@ -13,15 +13,15 @@ const CommunityScreen = () => {
     { id: '3', title: 'Book Club', description: 'Discussing the latest novel', date: '2024-08-22', location: 'Tirupati', joined: false },
   ]);
 
-  const [userEvents, setUserEvents] = useState([]); // State for user events
-  const [userLocation, setUserLocation] = useState(null); // State for user location
-  const [locationError, setLocationError] = useState(null); // State for location errors
+  const [userEvents, setUserEvents] = useState([]); 
+  const [userLocation, setUserLocation] = useState(null);
+  const [locationError, setLocationError] = useState(null);
 
   const navigation = useNavigation();
 
   useEffect(() => {
     const getUserLocation = async () => {
-      // Request location permission
+      // Request location permission fro the device
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Permission Denied', 'You need to enable location services to use this feature.');
@@ -29,7 +29,7 @@ const CommunityScreen = () => {
       }
 
       try {
-        // Get current location
+        // Get current location fro expo-loaction
         const location = await Location.getCurrentPositionAsync({});
         setUserLocation(location.coords);
 
@@ -62,8 +62,6 @@ const CommunityScreen = () => {
           event.id === eventId ? { ...event, joined: true } : event
         )
       );
-
-      // Optionally add to user events
       setUserEvents(prevUserEvents => [
         ...prevUserEvents,
         events.find(event => event.id === eventId),

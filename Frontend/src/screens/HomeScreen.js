@@ -1,19 +1,17 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
-  
   const navigation = useNavigation();
-  
+
   const handleLogin = () => {
     navigation.navigate("Login");
   };
-  
+
   const handleSignup = () => {
     navigation.navigate("SignUp");
   };
-  
 
   return (
     <View style={styles.container}>
@@ -23,7 +21,7 @@ const HomeScreen = () => {
       />
       <Text style={styles.title}>Your companion for calmness</Text>
       <Text style={styles.subTitle}>
-       Come home to SerenAura!{"\n"}Take easier steps to wellness
+        Come home to SerenAura!{"\n"}Take easier steps to wellness
       </Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -42,8 +40,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
-    justifyContent: "center", // Center items vertically
-    padding: 20, // Add padding to avoid edges
+    justifyContent: "center", 
+    padding: 20,
   },
   logo: {
     height: 60,
@@ -51,8 +49,8 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   bannerImage: {
-    marginTop:"-30%",
-    
+    marginTop: "-30%",
+
     height: 250,
     width: 231,
   },
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     textAlign: "center",
     marginTop: 40,
-    fontWeight:"bold"
+    fontWeight: "bold",
   },
   subTitle: {
     fontSize: 18,
@@ -71,9 +69,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    justifyContent: "space-between", // Space out buttons evenly
-    width: "100%", // Make container full width
-    maxWidth: 300, // Optional: limit max width
+    justifyContent: "space-between", 
+    width: "100%", 
+    maxWidth: 300, 
     marginTop: 20,
   },
   button: {
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: "pink",
     paddingVertical: 15,
     borderRadius: 30,
-    marginHorizontal: 5, // Add margin between buttons
+    marginHorizontal: 5,
   },
   buttonText: {
     fontSize: 18,

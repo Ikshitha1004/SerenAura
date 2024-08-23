@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 6,
-    elevation: 6, // For Android shadow
-    width: Dimensions.get('window').width - 60, // Full width minus margin
-    height: 80, // Fixed height for consistency
+    elevation: 6,
+    width: Dimensions.get('window').width - 60,
+    height: 80, 
   },
   icon: {
     resizeMode: 'contain',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: '#333',
-    flex: 1, // Allows the text to take up the remaining space
+    flex: 1,
   },
 });
 

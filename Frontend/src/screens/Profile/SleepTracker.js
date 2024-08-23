@@ -1,32 +1,69 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Modal, TextInput, Button, Alert } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import DateRow from './Daterow'; // Import the DateRow component
+import DateRow from './Daterow';
+import { getAuth } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../configs/firebaseConfig';
 
 const SleepTracker = () => {
-  // Generate the last 10 days
   const getLast10Days = () => {
     const today = new Date();
     return Array.from({ length: 10 }, (_, i) => {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
-      return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+      return date.toISOString().split('T')[0];
     }).reverse();
   };
 
   const [sleepData, setSleepData] = useState({
-    dailySleep: Array(10).fill(0).map((_, i) => (i + 1) * 0.5),
+    dailySleep: Array(10).fill(0), 
     dates: getLast10Days(),
-    selectedDaySleep: 6.5,
+    selectedDaySleep: 0,
     selectedDate: getLast10Days()[getLast10Days().length - 1],
   });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newSleepHours, setNewSleepHours] = useState('');
 
+  useEffect(() => {
+    fetchSleepData(sleepData.selectedDate);
+  }, [sleepData.selectedDate]);
+
+  const fetchSleepData = async (date) => {
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      Alert.alert('Error', 'You are not authorized');
+      return;
+    }
+
+    const sleepDataRef = doc(db, 'users', currentUser.uid, 'sleepData', date);
+
+    try {
+      const docSnap = await getDoc(sleepDataRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const sleepHours = data.sleepData || 0;
+        setSleepData((prevState) => ({
+          ...prevState,
+          selectedDaySleep: sleepHours,
+        }));
+      } else {
+        setSleepData((prevState) => ({
+          ...prevState,
+          selectedDaySleep: 0,
+        }));
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Failed to fetch sleep data');
+      console.error('Error fetching sleep data: ', error);
+    }
+  };
+
   const handleDatePress = (index) => {
     setSleepData((prevState) => ({
       ...prevState,
-      selectedDaySleep: prevState.dailySleep[index],
       selectedDate: prevState.dates[index],
     }));
   };
@@ -45,12 +82,8 @@ const SleepTracker = () => {
     setNewSleepHours('');
   };
 
-  // Format the dates for the chart's x-axis
   const formatDatesForChart = (dates) => {
-    return dates.map(date => {
-      const day = new Date(date);
-      return `Day ${dates.indexOf(date) + 1}`;
-    });
+    return dates.map(date => `Day ${dates.indexOf(date) + 1}`);
   };
 
   return (
@@ -73,20 +106,20 @@ const SleepTracker = () => {
                 datasets: [
                   {
                     data: sleepData.dailySleep,
-                    color: (opacity = 1) => `rgba(255, 105, 180, ${opacity})`, // Dark pink line color
+                    color: (opacity = 1) => `rgba(255, 105, 180, ${opacity})`,
                   },
                 ],
               }}
-              width={Dimensions.get('window').width * 1.5} // Adjust width to fit all dates
+              width={Dimensions.get('window').width * 1.5}
               height={220}
               yAxisSuffix="h"
-              yAxisInterval={1} // optional, defaults to 1
+              yAxisInterval={1}
               chartConfig={{
                 backgroundColor: '#282C34',
                 backgroundGradientFrom: '#1E2923',
                 backgroundGradientTo: '#08130D',
-                decimalPlaces: 1, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 105, 180, ${opacity})`, // Dark pink chart color
+                decimalPlaces: 1,
+                color: (opacity = 1) => `rgba(255, 105, 180, ${opacity})`,
                 labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                 style: {
                   borderRadius: 16,
@@ -94,7 +127,7 @@ const SleepTracker = () => {
                 propsForDots: {
                   r: '6',
                   strokeWidth: '2',
-                  stroke: '#FF69B4', // Dark pink dot stroke color
+                  stroke: '#FF69B4',
                 },
               }}
               bezier
@@ -106,7 +139,6 @@ const SleepTracker = () => {
           </View>
         </ScrollView>
 
-        {/* Modal for input */}
         <Modal
           transparent={true}
           visible={isModalVisible}
@@ -145,7 +177,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff', // Dark background color
+    backgroundColor: '#fff',
   },
   circleContainer: {
     marginBottom: 20,
@@ -155,7 +187,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     marginTop: 10,
-    backgroundColor: '#000000', // Dark background circle
+    backgroundColor: '#000000',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -171,13 +203,13 @@ const styles = StyleSheet.create({
   graphContainer: {
     width: '100%',
     height: 220,
-    backgroundColor: '#444', // Dark graph background
+    backgroundColor: '#444',
   },
   modalOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)', // Transparent background
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalContent: {
     backgroundColor: '#fff',
@@ -213,7 +245,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 10,
     backgroundColor: '#fc6c85',
-    marginBottom:"40%",
     borderRadius: 5,
   },
   openModalButtonText: {

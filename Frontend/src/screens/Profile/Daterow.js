@@ -7,7 +7,7 @@ const DateRow = ({ dates, handleDatePress }) => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
       console.warn(`Invalid date format: ${dateString}`);
-      return ''; // Return an empty string if date is invalid
+      return '';
     }
     const options = { month: 'short', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
@@ -28,26 +28,25 @@ const DateRow = ({ dates, handleDatePress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60, // Fixed height to fit the buttons
-    marginTop: 10, // Adjusted margin
+    height: 60, 
+    marginTop: 10, 
   },
   datesContainer: {
-    alignItems: 'center', // Center align items
-    paddingHorizontal: 5, // Reduced horizontal padding
+    alignItems: 'center', 
+    paddingHorizontal: 5, 
   },
   dateButton: {
-    marginRight: 10, // Reduced margin between buttons
-    paddingHorizontal: 50, // Reduced horizontal padding
-    paddingVertical: 4, // Reduced vertical padding
-    backgroundColor: '#444', // Button background color
+    marginRight: 10, 
+    paddingHorizontal: 50, 
+    backgroundColor: '#444', 
     borderRadius: 5,
-    height: 60, // Reduced height of the button
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
   },
   dateText: {
     color: '#fff',
-    fontSize: 12, // Font size for the date text
+    fontSize: 12, 
   },
 });
 

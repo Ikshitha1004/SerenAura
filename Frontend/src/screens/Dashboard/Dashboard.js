@@ -9,9 +9,12 @@ const DashboardScreen = ({ navigation }) => {
   const [userEvents, setUserEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const handleFooterPress = (screen) => {
+    navigation.navigate(screen);
+  };
   useEffect(() => {
     const fetchUserEvents = async () => {
+     
       try {
         // Fetch events user has joined
         const q = query(collection(db, 'events'), where('joined', '==', true));
@@ -42,9 +45,6 @@ const DashboardScreen = ({ navigation }) => {
   
 //   return eventDate === today;
 // });
-
-        
-
         console.log("Filtered Events: ",events); // Log filtered events
 
         setFilteredEvents(events);
@@ -59,10 +59,7 @@ const DashboardScreen = ({ navigation }) => {
     fetchUserEvents();
   }, []);
 
-  const handleFooterPress = (screen) => {
-    navigation.navigate(screen);
-  };
-
+/*Setting while the dashboard loads */
   if (loading) {
     return (
       <View style={styles.container}>
@@ -77,7 +74,7 @@ const DashboardScreen = ({ navigation }) => {
         <MenuButton navigation={navigation} />
         <Text style={styles.greeting}>Hello!Welcome  to Serenaura</Text>
 
-        {/* Profile Icon */}
+
         <TouchableOpacity onPress={() => handleFooterPress("ProfileScreen")}>
         <Entypo
           name="user"

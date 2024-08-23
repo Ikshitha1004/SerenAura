@@ -168,7 +168,6 @@ import GroundingTechniquesScreen from "../screens/GroundingTechniquesScreens/Gro
 import JournalEntryScreen from "../screens/JournalScreens/JournalEntryScreen";
 import JournalListScreen from "../screens/JournalScreens/JournalListScreen";
 import SettingsScreen from "../screens/Dashboard/Settings";
-import Entry from "../screens/LogScreens/Entry";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -195,11 +194,6 @@ const AppNavigator = () => {
           name="SignUp"
           component={SignUp}
           options={{ title: " W" }}
-        />
-        <Stack.Screen
-          name="Entry"
-          component={Entry}
-          options={{ title: "Sign Up" }}
         />
         <Stack.Screen
           name="AvatarSelection"

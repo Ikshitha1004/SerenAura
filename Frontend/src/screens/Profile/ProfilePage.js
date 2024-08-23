@@ -1,4 +1,3 @@
-// ProfileScreen.js
 import { StyleSheet, View, ImageBackground, Text } from "react-native";
 import React from "react";
 import Top from "./Top";

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
+import { Calendar } from 'react-native-calendars';
 
 const SleepDataInputScreen = ({ navigation }) => {
+  const [selectedDate, setSelectedDate] = useState('');
   const [newSleepHours, setNewSleepHours] = useState('');
 
   const handleSave = async () => {
@@ -21,7 +23,12 @@ const SleepDataInputScreen = ({ navigation }) => {
       return;
     }
 
-    const sleepDataRef = doc(db, 'users', currentUser.uid, 'sleepData', 'dailySleepData');
+    if (!selectedDate) {
+      Alert.alert('Error', 'No date selected');
+      return;
+    }
+
+    const sleepDataRef = doc(db, 'users', currentUser.uid, 'sleepData', selectedDate);
 
     try {
       const docSnap = await getDoc(sleepDataRef);
@@ -32,11 +39,10 @@ const SleepDataInputScreen = ({ navigation }) => {
         sleepData = data.sleepData || [];
       }
 
-      // Add new sleep hours entry and manage array size
       sleepData.push(parseFloat(newSleepHours));
 
-      if (sleepData.length > 7) {
-        sleepData.shift(); // Remove the oldest entry
+      if (sleepData.length > 10) {
+        sleepData.shift();
       }
 
       await setDoc(sleepDataRef, { sleepData });
@@ -50,20 +56,49 @@ const SleepDataInputScreen = ({ navigation }) => {
     }
   };
 
+  // Generate last 10 days
+  const generateLast10Days = () => {
+    const days = {};
+    for (let i = 0; i < 10; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateString = date.toISOString().split('T')[0];
+      days[dateString] = {
+        disabled: false,
+        marked: true, // To mark them on the calendar
+      };
+    }
+    return days;
+  };
+
+  const last10Days = generateLast10Days();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Enter Sleep Data</Text>
+      <Calendar
+        onDayPress={(day) => setSelectedDate(day.dateString)}
+        markedDates={{
+          ...last10Days,
+          [selectedDate]: { selected: true, marked: true },
+        }}
+        theme={{
+          selectedDayBackgroundColor: '#FF69B4',
+          selectedDayTextColor: '#fff',
+        }}
+      />
       <TextInput
         style={styles.input}
         keyboardType="numeric"
         placeholder="Enter hours"
+        placeholderTextColor="#ccc"
         value={newSleepHours}
         onChangeText={setNewSleepHours}
       />
       <Button title="Save" onPress={handleSave} />
       <TouchableOpacity
         style={styles.trackButton}
-        onPress={() => navigation.navigate('Sleep')}
+        onPress={() => navigation.navigate('SleepTracker')}
       >
         <Text style={styles.trackButtonText}>Track Sleep Data</Text>
       </TouchableOpacity>
@@ -82,6 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
     height: 40,

@@ -1,4 +1,3 @@
-// EventCard.js
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
@@ -30,8 +29,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginVertical: 8,
     marginHorizontal: 16,
-    elevation: 3, // Adds shadow for Android
-    shadowColor: '#000', // Adds shadow for iOS
+    elevation: 3,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,

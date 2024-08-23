@@ -9,15 +9,15 @@ const auth = getAuth();
 
 const Progress = () => {
   const [scores, setScores] = useState([]);
-  const [indicesArray, setIndicesArray] = useState([]); // State for indices
+  const [indicesArray, setIndicesArray] = useState([]);
   const [userId, setUserId] = useState(null);
-  const [message, setMessage] = useState(""); // State for the message
-  const [averageScore, setAverageScore] = useState(null); // State for the average score
-
+  const [message, setMessage] = useState("");
+  const [averageScore, setAverageScore] = useState(null);
+/*See if the user is subscribed */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUserId(user.uid); // Set user ID for the authenticated user
+        setUserId(user.uid);
       } else {
         console.log("User is not logged in");
       }
@@ -31,30 +31,28 @@ const Progress = () => {
 
     const fetchData = async () => {
       try {
+        /*Trying to get the data fro firestore */
         const userDocRef = doc(firestore, "users", userId);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
           const data = userDoc.data();
-          const scoresArray = data.scores || []; // Assuming scores is an array of {date, score} objects
+          const scoresArray = data.scores || []; 
 
-          // Prepare data for the chart
           const scoresValues = scoresArray.map((entry) => entry.score);
           const indices = scoresValues.map((_, index) =>
             (index + 1).toString()
-          ); // Create indices for x-axis
+          );
 
           setScores(scoresValues);
-          setIndicesArray(indices); // Set indices for x-axis
+          setIndicesArray(indices); 
 
-          // Calculate average score
           const totalScore = scoresValues.reduce(
             (acc, score) => acc + score,
             0
           );
           const average = totalScore / scoresValues.length;
-
-          // Determine message based on average score
+        /*Take care of the essage based on average  */
           let text = "";
           if (average <= 15) {
             text =
@@ -90,10 +88,10 @@ const Progress = () => {
         <>
           <LineChart
             data={{
-              labels: indicesArray, // Use indices for the x-axis labels
+              labels: indicesArray,
               datasets: [{ data: scores }],
             }}
-            width={Dimensions.get("window").width - 20} // Width of the graph
+            width={Dimensions.get("window").width - 20}
             height={450}
             yAxisLabel=""
             yAxisSuffix=""

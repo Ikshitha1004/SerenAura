@@ -2,54 +2,54 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image } from "react-native";
 import { getAuth } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../../configs/firebaseConfig'; // Adjust the path if necessary
+import { db } from '../../configs/firebaseConfig';
 
 const Middle = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userAvatar, setUserAvatar] = useState(null);
-
+ /*Fetch the user data from firestore to store it in the profile */
   useEffect(() => {
-    const fetchUserData = async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (user) {
-        try {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDocSnap = await getDoc(userDocRef);
-          if (userDocSnap.exists()) {
-            const userData = userDocSnap.data();
-            setUserName(userData.userName || user.displayName || "Unknown");
-            setUserEmail(userData.email || user.email || "No email");
-            setUserAvatar(userData.avatar || null);
-            console.log(userData.avatar);
-          } else {
-            console.log('No such document!');
+      const fetchUserData = async () => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {
+          try {
+            const userDocRef = doc(db, 'users', user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+            if (userDocSnap.exists()) {
+              const userData = userDocSnap.data();
+              setUserName(userData.userName || user.displayName || "Unknown");
+              setUserEmail(userData.email || user.email || "No email");
+              setUserAvatar(userData.avatar || null);
+            } else {
+              console.log('No such document!');
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error);
           }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
+        } else {
+          console.log('No user is signed in.');
         }
-      } else {
-        console.log('No user is signed in.');
-      }
     };
 
     fetchUserData();
   }, []);
-console.log(userAvatar);
+
+
+
   return (
-    <View style={styles.main}>
-      <View style={styles.imageContainer}>
-        
-        {userAvatar ? (
-          <Image source={{ uri: userAvatar }} style={styles.image} />
-        ) : (
-           <Image source={require("../../assets/avatars/p3.png")} style={styles.image} />
-        )}
-        <Text style={styles.userName}>{userName}</Text>
-        <Text style={styles.userEmail}>{userEmail}</Text>
+      <View style={styles.main}>
+        <View style={styles.imageContainer}>
+          {userAvatar ? (
+            <Image source={{ uri: userAvatar }} style={styles.image} />
+          ) : (
+            <Image source={require("../../assets/avatars/p3.png")} style={styles.image} />
+          )}
+          <Text style={styles.userName}>{userName}</Text>
+          <Text style={styles.userEmail}>{userEmail}</Text>
+        </View>
       </View>
-    </View>
   );
 };
 
