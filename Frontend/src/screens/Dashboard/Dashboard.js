@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert,Dimensions } from 'react-native';
 import { Entypo, FontAwesome6 } from '@expo/vector-icons'; // Importing FontAwesome and Entypo icons from Expo Vector Icons
 import { db } from '../../configs/firebaseConfig'; // Adjust the path as needed
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import MenuButton from '../../components/MenuButton';
+const { width, height } = Dimensions.get("window");
 
 const DashboardScreen = ({ navigation }) => {
   const [userEvents, setUserEvents] = useState([]);
@@ -75,7 +76,7 @@ const DashboardScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <MenuButton navigation={navigation} />
-        <Text style={styles.greeting}>Hello!Welcome  to Serenaura</Text>
+        <Text style={styles.greeting}>Welcome  to Serenaura</Text>
 
         {/* Profile Icon */}
         <TouchableOpacity onPress={() => handleFooterPress("ProfileScreen")}>
@@ -86,7 +87,7 @@ const DashboardScreen = ({ navigation }) => {
           style={styles.profileIcon}
         />
       </TouchableOpacity>
-
+    
         {/* Scrollable Icon Container */}
         <ScrollView
         horizontal
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    padding: 15,
+    padding: width*0.05,
   },
   header: {
     alignItems: 'center',
@@ -181,26 +182,30 @@ const styles = StyleSheet.create({
   profileIcon: {
    left:"45%",
     right:30,
-    top:"-350%"
+    top:"-400%"
   },
   menuIcon: {
     position: 'absolute',
     left: 0,
     top: 0,
   },
+ 
   iconScrollContainer: {
     flexDirection: 'row',
     marginBottom: 20,
     position: 'absolute',
-    right: 40,
+    right: width * 0.05, // Adjusted for better fit
     top: 100,
+    left: width * 0.0, 
+    width: width * 0.9, 
+    overflow: 'hidden', 
   },
   icon: {
-    width: 70,
+    width: width*0.13,
     height: 70,
     borderRadius: 35,
-    marginRight: 39,
-    left: 50,
+    marginRight: width*0.07,
+    left: 40,
   },
   taskTitle: {
     fontSize: 20,

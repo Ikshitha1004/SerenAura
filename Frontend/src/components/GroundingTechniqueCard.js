@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get("window");
 
 const BreathingTimer = ({ timer, isActive, setIsActive }) => {
   const [secondsLeft, setSecondsLeft] = useState(timer);
@@ -56,37 +58,42 @@ const GroundingTechniqueCard = ({ technique }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <View style={styles.card}>
-      <Text style={styles.name}>{technique.name}</Text>
-      {Array.isArray(technique.description) ? (
-        technique.description.map((item, index) => (
-          <View key={index} style={styles.descriptionContainer}>
-            <Image source={item.image} style={styles.smallImage} />
-            <View style={styles.textContainer}>
-              <Text style={styles.description}>{item.text}</Text>
-              <Text style={styles.explanation} numberOfLines={10}>
-                {item.explanation}
-              </Text>
+    <ScrollView contentContainerStyle={styles.cardContainer}>
+      <View style={styles.card}>
+        <Text style={styles.name}>{technique.name}</Text>
+        {Array.isArray(technique.description) ? (
+          technique.description.map((item, index) => (
+            <View key={index} style={styles.descriptionContainer}>
+              <Image source={item.image} style={styles.smallImage} />
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>{item.text}</Text>
+                <Text style={styles.explanation} numberOfLines={10}>
+                  {item.explanation}
+                </Text>
+              </View>
             </View>
-          </View>
-        ))
-      ) : (
-        <>
-          {technique.image && <Image source={technique.image} style={styles.image} />}
-          <Text style={styles.description}>{technique.description}</Text>
-        </>
-      )}
-      {(technique.id === 4 || technique.id === 15) && (
-        <BreathingTimer timer={technique.timer} isActive={isActive} setIsActive={setIsActive} />
-      )}
-    </View>
+          ))
+        ) : (
+          <>
+            {technique.image && <Image source={technique.image} style={styles.image} />}
+            <Text style={styles.description}>{technique.description}</Text>
+          </>
+        )}
+        {(technique.id === 4 || technique.id === 15) && (
+          <BreathingTimer timer={technique.timer} isActive={isActive} setIsActive={setIsActive} />
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    flexGrow: 1,
+    padding: width * 0.03,
+  },
   card: {
-    margin: '2%',
-    padding: '5%',
+    padding: width * 0.05,
     backgroundColor: '#000000',
     borderRadius: 25,
     shadowColor: '#000',
@@ -94,6 +101,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
     overflow: 'hidden',
+    marginBottom: height * 0.02, // Add some space below the card
   },
   descriptionContainer: {
     flexDirection: 'row',
@@ -172,3 +180,4 @@ const styles = StyleSheet.create({
 });
 
 export default GroundingTechniqueCard;
+ 
