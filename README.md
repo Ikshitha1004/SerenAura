@@ -28,9 +28,10 @@ In India, about 150 million people struggle with mental health issues, but fewer
 The Gratitude Jar feature in our app is a thoughtful and meaningful tool designed to foster positivity and mental well-being. It allows users to capture and save moments of gratitude, which could include positive experiences, cherished memories, and even photos that hold sentimental value. This feature serves as a personal repository of happiness, where users can record and revisit these entries whenever they need a boost in their mood. When users feel stressed, anxious, or overwhelmed, they can open the Gratitude Jar and scroll through their collection of positive moments. This practice can help shift their focus away from negative emotions and remind them of the good things in their lives.
  <div>
  <img src="https://github.com/user-attachments/assets/c08d179e-6c71-4c64-9d6c-86516a9dec0a" width="200" />
-  <img width="200" src="https://github.com/user-attachments/assets/a9c3ebc1-6eb7-4062-9dad-643ff0d5a7c3">
-  <img width="200" src="https://github.com/user-attachments/assets/16e6c241-5d9c-4124-a3dd-e6a90de033a7">
   <img width="200" src="https://github.com/user-attachments/assets/f308f742-51f0-44c1-b44e-07a57c91664c">
+  <img width="200" src="https://github.com/user-attachments/assets/16e6c241-5d9c-4124-a3dd-e6a90de033a7">
+  <img width="200" src="https://github.com/user-attachments/assets/a9c3ebc1-6eb7-4062-9dad-643ff0d5a7c3">
+
 
 
 </div>
