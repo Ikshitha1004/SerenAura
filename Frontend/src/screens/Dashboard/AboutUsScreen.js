@@ -1,7 +1,5 @@
 // import React from "react";
 import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
-
-// Get the screen dimensions
 const { width, height } = Dimensions.get("window");
 
 const AboutUsScreen = () => {
@@ -26,19 +24,19 @@ const AboutUsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: width * 0.05, // 5% of screen width
-    paddingTop: height * 0.05, // 5% of screen height
+    paddingHorizontal: width * 0.05, 
+    paddingTop: height * 0.05,
     backgroundColor: "#EEEEEE",
   },
   title: {
-    fontSize: width * 0.06, // 6% of screen width
+    fontSize: width * 0.06,
     fontWeight: "bold",
-    marginBottom: height * 0.02, // 2% of screen height
+    marginBottom: height * 0.02, 
   },
   content: {
-    marginTop: height * 0.05, // 5% of screen height
-    fontSize: width * 0.035, // 4.5% of screen width
-    lineHeight: width * 0.07, // 7% of screen width
+    marginTop: height * 0.05, 
+    fontSize: width * 0.035, 
+    lineHeight: width * 0.07, 
     color: "#4a4a4a",
     textAlign: "justify",
   },
