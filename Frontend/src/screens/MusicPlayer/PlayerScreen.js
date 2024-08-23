@@ -10,8 +10,6 @@ import {
 import { Audio } from "expo-av";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useFocusEffect } from "@react-navigation/native";
-
-// Ensure audio files are correctly imported
 import PeacefulGarden from "../../assets/Music/peaceful-garden.mp3";
 import CalmBreeze from "../../assets/Music/calm-breeze.mp3";
 import SilentWaters from "../../assets/Music/silent-waters.mp3";
@@ -29,6 +27,7 @@ import OceanWaves from "../../assets/Music/ocean-waves.mp3";
 import Birdsong from "../../assets/Music/birdsong.mp3";
 import MountainBreeze from "../../assets/Music/mountain-breeze.mp3";
 
+//mapping song file names
 const audioFiles = {
   "peaceful-garden.mp3": PeacefulGarden,
   "calm-breeze.mp3": CalmBreeze,
@@ -71,10 +70,11 @@ const PlayerScreen = ({ route }) => {
         sound.unloadAsync();
       }
     };
-  }, [song.file]);
+  }, [song.file]); //again run effect when song changes
 
   useFocusEffect(
     React.useCallback(() => {
+      //while going back stop sound and reset state
       return () => {
         if (sound && isPlaying) {
           sound.stopAsync();
@@ -103,13 +103,12 @@ const PlayerScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       {/* Song Image */}
-      <View style={styles.songImageContainer}>
+      <View style={styles.imgSongContainer}>
         <Image source={song.image} style={styles.songImage} />
       </View>
 
-      <Text style={styles.songTitle}>{song.title}</Text>
-
-      {/* Play/Pause Button */}
+      <Text style={styles.title_song}>{song.title}</Text>
+      {/* To integrate Play/Pause Button */}
       <TouchableOpacity style={styles.button} onPress={handlePlayPause}>
         <Icon
           name={isPlaying ? "pause" : "play-arrow"}
@@ -128,14 +127,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  songImageContainer: {
-    width: "80%", // Make the container slightly smaller than the screen width
-    height: "50%", // Cover half of the screen height
-    backgroundColor: "#f0f0f0", // Background color for the container
-    borderRadius: 20, // Rounded corners for the container
-    borderWidth: 0, // Border width for the container
-    borderColor: "#dcdcdc", // Border color
-    overflow: "hidden", // Ensure the image stays within the container's bounds
+ imgSongContainer: {
+    width: "80%", 
+    height: "50%", 
+    backgroundColor: "#f0f0f0", 
+    borderRadius: 20, 
+    borderWidth: 0, 
+    borderColor: "#dcdcdc", 
+    overflow: "hidden",
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -143,9 +142,9 @@ const styles = StyleSheet.create({
   songImage: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover", // Make the image cover the entire container
+    resizeMode: "cover", 
   },
-  songTitle: {
+  title_song: {
     fontSize: 24,
     color: "black",
     textAlign: "center",
