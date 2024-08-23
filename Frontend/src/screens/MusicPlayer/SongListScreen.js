@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-
-// Static imports for images
 import PeaceImage from "../../assets/Music/peaceful-category.png";
 import DeepSleepImage from "../../assets/Music/deep-sleep-category.png";
 import MeditationImage from "../../assets/Music/meditation-category.png";
@@ -72,11 +70,11 @@ const songs = {
 
 const SongListScreen = ({ route, navigation }) => {
   const { category } = route.params;
-  const categorySongs = songs[category.id] || [];
+  const songsCategory = songs[category.id] || [];
 
   return (
     <View style={styles.container}>
-      {categorySongs.map((song, index) => (
+      {songsCategory.map((song, index) => (
         <TouchableOpacity
           key={index}
           style={styles.songButton}
@@ -84,7 +82,7 @@ const SongListScreen = ({ route, navigation }) => {
             navigation.navigate("Player", { song: song, category: category })
           }
         >
-          <View style={styles.imageContainer}>
+          <View style={styles.imgContainer}>
             <Image source={song.image} style={styles.image} />
           </View>
           <Text style={styles.songText}>{song.title}</Text>
@@ -94,7 +92,9 @@ const SongListScreen = ({ route, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+
+const styles = StyleSheet.create
+({
   container: {
     flex: 1,
     justifyContent: "center",
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: "7%",
   },
-  imageContainer: {
+  imgContainer: {
     width: 100,
     height: 100,
     borderRadius: 50,
