@@ -49,7 +49,7 @@ const AddNoteScreen = ({ navigation }) => {
       setMediaType(null);
       setDate(new Date());
 
-      // Navigate back and pass the new note
+  
       navigation.navigate('GratitudeJarScreen', { newNote });
     } catch (error) {
       console.error("Error adding document: ", error);
