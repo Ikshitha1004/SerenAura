@@ -6,33 +6,28 @@ import { useFocusEffect } from "@react-navigation/native";
 
 const RatingScreen = ({ navigation }) => {
   const [rating, setRating] = useState(0);
-
   // Reset rating when the screen is focused
   useFocusEffect(
     useCallback(() => {
       setRating(0);
     }, [])
   );
-
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
-
-  const handleSubmit = () => {
+  const submit_handler = () => {
     Alert.alert(
       "Thank you for your feedback!",
       `You rated us ${rating} star(s).`
     );
-    // Here you can handle submission, e.g., send rating to a server
     navigation.goBack();
   };
-
+  const rating_handler = (rate) => {
+    setRating(rate);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Rate Us</Text>
       <View style={styles.starsContainer}>
         {[1, 2, 3, 4, 5].map((star) => (
-          <TouchableOpacity key={star} onPress={() => handleRating(star)}>
+          <TouchableOpacity key={star} onPress={() => rating_handler(star)}>
             <Ionicons
               name={rating >= star ? "star" : "star-outline"}
               size={40}
@@ -41,7 +36,7 @@ const RatingScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </View>
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+      <TouchableOpacity style={styles.submitButton} onPress={submit_handler}>
         <Text style={styles.submitText}>Submit</Text>
       </TouchableOpacity>
     </View>
@@ -69,12 +64,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fc6c85",
     padding: 10,
     borderRadius: 5,
-    width:"40%",
+    width: "40%",
   },
   submitText: {
     color: "#000000",
     fontSize: 18,
-    left:30,
+    left: 30,
   },
 });
 
