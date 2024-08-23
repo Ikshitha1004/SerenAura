@@ -4,18 +4,16 @@ import questions from "../../data/questions";
 import { auth, db } from "../../configs/firebaseConfig";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
-
 export default function QuestionScreen({ route, navigation }) {
-  const { questionIndex } = route.params;
+  const { queIndex } = route.params;
 
-  const [selectedOptions, setSelectedOptions] = useState(
+  const [selectedOptions, selectedOptionsSet] = useState(
     Array(questions.length).fill(null)
   );
-
   const handleOptionSelect = (index) => {
     const updatedSelections = [...selectedOptions];
-    updatedSelections[questionIndex] = index;
-    setSelectedOptions(updatedSelections);
+    updatedSelections[queIndex] = index;
+    selectedOptionsSet(updatedSelections);
   };
 
   const calculateScore = () => {
@@ -23,9 +21,9 @@ export default function QuestionScreen({ route, navigation }) {
       if (optionIndex !== null) {
         const questionType = questions[i].type;
         if (questionType === "negative") {
-          return total + (optionIndex + 1); // Ascending order: '1', '2', '3', '4'
+          return total + (optionIndex + 1);
         } else if (questionType === "positive") {
-          return total + (4 - optionIndex); // Descending order: '4', '3', '2', '1'
+          return total + (4 - optionIndex);
         }
       }
       return total;
@@ -40,7 +38,7 @@ export default function QuestionScreen({ route, navigation }) {
         await updateDoc(userDocRef, {
           scores: arrayUnion({
             score: score,
-            timestamp: Date.now(), // Use JavaScript's Date.now() for timestamp
+            timestamp: Date.now(),
           }),
         });
       } catch (error) {
@@ -51,11 +49,11 @@ export default function QuestionScreen({ route, navigation }) {
   };
 
   const handleNext = async () => {
-    if (selectedOptions[questionIndex] === null) {
+    if (selectedOptions[queIndex] === null) {
       Alert.alert("Warning", "Please select an option before proceeding.");
     } else {
-      if (questionIndex < questions.length - 1) {
-        navigation.navigate("Question", { questionIndex: questionIndex + 1 });
+      if (queIndex < questions.length - 1) {
+        navigation.navigate("Question", { queIndex: queIndex + 1 });
       } else {
         const score = calculateScore();
         await storeScoreInDb(score);
@@ -64,31 +62,30 @@ export default function QuestionScreen({ route, navigation }) {
     }
   };
 
-  const handlePrevious = () => {
-    if (questionIndex > 0) {
-      navigation.navigate("Question", { questionIndex: questionIndex - 1 });
+  const handlePrev = () => {
+    if (queIndex > 0) {
+      navigation.navigate("Question", { queIndex: queIndex - 1 });
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.questionText}>
-        {questions[questionIndex].question}
-      </Text>
+      <Text style={styles.questionText}>{questions[queIndex].question}</Text>
       <View style={styles.optionsContainer}>
-        {questions[questionIndex].options.map((option, index) => (
+        {questions[queIndex].options.map((option, index) => (
           <TouchableOpacity
             key={index}
             style={[
               styles.optionButton,
-              selectedOptions[questionIndex] === index && styles.selectedOption,
+              selectedOptions[queIndex] === index && styles.selectedOption,
             ]}
             onPress={() => handleOptionSelect(index)}
           >
             <Text
               style={[
                 styles.optionText,
-                selectedOptions[questionIndex] === index && styles.selectedOptionText,
+                selectedOptions[queIndex] === index &&
+                  styles.selectedOptionText,
               ]}
             >
               {option}
@@ -97,14 +94,14 @@ export default function QuestionScreen({ route, navigation }) {
         ))}
       </View>
       <View style={styles.buttonContainer}>
-        {questionIndex > 0 && (
-          <TouchableOpacity style={styles.button} onPress={handlePrevious}>
+        {queIndex > 0 && (
+          <TouchableOpacity style={styles.button} onPress={handlePrev}>
             <Text style={styles.buttonText}>Previous</Text>
           </TouchableOpacity>
         )}
         <TouchableOpacity style={styles.button} onPress={handleNext}>
           <Text style={styles.buttonText}>
-            {questionIndex === questions.length - 1 ? "Submit" : "Next"}
+            {queIndex === questions.length - 1 ? "Submit" : "Next"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -130,23 +127,23 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   optionButton: {
-    backgroundColor: '#E6E6FA',
-    borderColor: '#CCCCCC',
+    backgroundColor: "#E6E6FA",
+    borderColor: "#CCCCCC",
     borderWidth: 1,
     borderRadius: 8,
     padding: 15,
     marginVertical: 5,
   },
   selectedOption: {
-    backgroundColor: '#FC6C85',
-    borderColor: '#FC6C85',
+    backgroundColor: "#FC6C85",
+    borderColor: "#FC6C85",
   },
   optionText: {
     fontSize: 16,
-    color: '#000000',
+    color: "#000000",
   },
   selectedOptionText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   buttonContainer: {
     flexDirection: "row",
