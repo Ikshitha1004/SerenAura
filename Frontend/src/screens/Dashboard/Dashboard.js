@@ -73,8 +73,6 @@ const DashboardScreen = ({ navigation }) => {
       <View style={styles.header}>
         <MenuButton navigation={navigation} />
         <Text style={styles.greeting}>Hello!Welcome  to Serenaura</Text>
-
-
         <TouchableOpacity onPress={() => handleFooterPress("ProfileScreen")}>
         <Entypo
           name="user"
@@ -84,7 +82,7 @@ const DashboardScreen = ({ navigation }) => {
         />
       </TouchableOpacity>
 
-        {/* Scrollable Icon Container */}
+        {/* Scrollable Icon Container for dashboard icons*/}
         <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -139,7 +137,7 @@ const DashboardScreen = ({ navigation }) => {
           <Text style={styles.noEventsText}>No events for today</Text>
         )}
       </ScrollView>
-
+      {/*setting up the footer icons */}
       <View style={styles.footerIconsContainer}>
         <TouchableOpacity onPress={() => handleFooterPress("Dashboard")}>
           <Entypo name="home" size={30} color="#000" style={styles.footerIcon} />
