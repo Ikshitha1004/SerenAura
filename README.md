@@ -94,7 +94,7 @@ Journaling is a powerful tool for self-expression and emotional processing, and 
 
 <img src="https://github.com/user-attachments/assets/35f2c92c-2565-4691-b0e8-f04c2cb5fe67" width="200" />
 </div>
-markdown
+
 
 # Ikshitha
 
